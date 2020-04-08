@@ -1,19 +1,22 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
+import { Grommet, Main } from 'grommet';
 
 import store from 'stores';
-import GlobalStyles from 'components/GlobalStyles';
+import GlobalStyles, { theme } from './style';
 import App from 'routes';
 // import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <>
+  <Grommet theme={theme} full>
     <GlobalStyles />
     <Provider store={store}>
-      <App />
+      <Main>
+        <App />
+      </Main>
     </Provider>
-  </>,
+  </Grommet>,
   document.getElementById('container')
 );
 

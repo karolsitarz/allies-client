@@ -1,7 +1,8 @@
+import { debugLog } from './debug';
+
 const COLOR_GREEN = '#2C7C26';
 const COLOR_RED = '#C11B1B';
 const DEBOUNCE_DELAY = 300;
-const debug = localStorage.debug === '1';
 
 export default (socket) => {
   // add the events object
@@ -24,8 +25,7 @@ export default (socket) => {
       clearTimeout(event.timeout);
       event.timeout = setTimeout(socket.comm(message, data), DEBOUNCE_DELAY);
       event.date = new Date();
-      if (debug) console.log(`%c→ ${message}`, `color: ${COLOR_GREEN}88`, data);
-      return;
+      return debugLog(`→ ${message}`, `${COLOR_GREEN}88`, data);
     }
 
     try {
@@ -35,18 +35,18 @@ export default (socket) => {
       console.error('WS Sending error: ', e);
     }
     event.date = new Date();
-    if (debug) console.log(`%c→ ${message}`, `color: ${COLOR_GREEN}`, data);
+    debugLog(`→ ${message}`, COLOR_GREEN, data);
   };
 
   socket.addEventListener('message', (connection) => {
+    console.log('.');
     try {
       const data = JSON.parse(connection.data);
-      if (events.hasOwnProperty(data.message)) {
-        events[data.message](data.data);
-        if (debug)
-          console.log(`\t%c← ${data.message}`, `color: ${COLOR_RED}`, data);
-      } else if (debug)
-        console.log(`\t%c← ${data.message}`, `color: ${COLOR_RED}88`, data);
+      if (!events.hasOwnProperty(data.message))
+        return debugLog(`\t← ${data.message}`, `${COLOR_RED}88`, data);
+
+      events[data.message](data.data);
+      debugLog(`\t← ${data.message}`, COLOR_RED, data);
     } catch (e) {
       console.error('WS Receiving error: ', e);
     }

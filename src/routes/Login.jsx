@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Box, Button, Heading, TextInput } from 'grommet';
 
-import { setSocket } from 'stores/socket';
+import MSG from 'util/msg';
 import { setRoute, ROUTES } from 'stores/route';
+import useSocket from 'hooks/useSocket';
+
+const StyledInput = styled(TextInput)`
+  margin: 3em 0 1em;
+`;
+const StyledForm = styled.form`
+  text-align: center;
+`;
 
 const Login = () => {
   const dispatch = useDispatch();
-  const sc = useSelector((state) => state.socket);
   const [input, setInput] = useState('');
+  const [, openSocket] = useSocket();
 
   const handleOnChange = (e) => {
     if (!e || !e.target) return;
@@ -16,22 +25,24 @@ const Login = () => {
     if (value.length > 20) return;
     setInput(value);
   };
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    if (sc) return;
-
-    const socket = new WebSocket(`ws://192.168.100.20:443`);
-    dispatch(setSocket(socket));
     dispatch(setRoute(ROUTES.LOADING));
+    const socket = await openSocket();
+    socket.comm(MSG.LOGIN, input);
   };
 
   return (
-    <div>
-      <form onSubmit={handleOnSubmit}>
-        <input value={input} onChange={handleOnChange} />
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
+    <Box justify="center" align="center" fill>
+      <Heading margin="none">Hi there! 👋</Heading>
+      <Heading margin="none" level="3">
+        What&apos;s your name?
+      </Heading>
+      <StyledForm onSubmit={handleOnSubmit}>
+        <StyledInput name="name" value={input} onChange={handleOnChange} />
+        <Button type="submit" primary label="Jump in!" />
+      </StyledForm>
+    </Box>
   );
 };
 
