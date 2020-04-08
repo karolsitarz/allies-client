@@ -6,7 +6,4 @@ import { routeReducer as route } from './route';
 
 const reducer = combineReducers({ socket, route });
 
-export default createStore(
-  reducer,
-  composeWithDevTools()
-);
+export default createStore(reducer, composeWithDevTools());

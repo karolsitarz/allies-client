@@ -1,9 +1,9 @@
 const COLOR_GREEN = '#2C7C26';
 const COLOR_RED = '#C11B1B';
 const DEBOUNCE_DELAY = 300;
-const debug = localStorage.debug === "1";
+const debug = localStorage.debug === '1';
 
-export default socket => {
+export default (socket) => {
   // add the events object
   socket.events = {};
   socket.debounce = {};
@@ -15,7 +15,7 @@ export default socket => {
     if (!debounce[message])
       debounce[message] = {
         date: 0,
-        timeout: undefined
+        timeout: undefined,
       };
 
     const event = debounce[message];
@@ -24,8 +24,7 @@ export default socket => {
       clearTimeout(event.timeout);
       event.timeout = setTimeout(socket.comm(message, data), DEBOUNCE_DELAY);
       event.date = new Date();
-      if (debug)
-        console.log(`%c→ ${message}`, `color: ${COLOR_GREEN}88`, data);
+      if (debug) console.log(`%c→ ${message}`, `color: ${COLOR_GREEN}88`, data);
       return;
     }
 
@@ -36,11 +35,10 @@ export default socket => {
       console.error('WS Sending error: ', e);
     }
     event.date = new Date();
-    if (debug)
-      console.log(`%c→ ${message}`, `color: ${COLOR_GREEN}`, data);
+    if (debug) console.log(`%c→ ${message}`, `color: ${COLOR_GREEN}`, data);
   };
 
-  socket.addEventListener('message', connection => {
+  socket.addEventListener('message', (connection) => {
     try {
       const data = JSON.parse(connection.data);
       if (events.hasOwnProperty(data.message)) {

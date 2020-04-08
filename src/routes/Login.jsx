@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setSocket } from 'stores/socket';
 import { setRoute, ROUTES } from 'stores/route';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const sc = useSelector((state) => state.socket);
   const [input, setInput] = useState('');
 
-  const handleOnChange = e => {
+  const handleOnChange = (e) => {
     if (!e || !e.target) return;
     const { value } = e.target;
     if (value.length > 20) return;
     setInput(value);
-  }
-  const handleOnSubmit = e => {
+  };
+  const handleOnSubmit = (e) => {
     e.preventDefault();
+    if (sc) return;
+
     const socket = new WebSocket(`ws://192.168.100.20:443`);
-    dispatch(setSocket(socket))
-    dispatch(setRoute(ROUTES.LOADING))
+    dispatch(setSocket(socket));
+    dispatch(setRoute(ROUTES.LOADING));
   };
 
   return (
@@ -29,7 +32,7 @@ const Login = () => {
         <input type="submit" value="Submit" />
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

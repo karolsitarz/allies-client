@@ -28,12 +28,10 @@ const Spinner = styled.div`
   animation: ${spinning} 1.5s linear infinite;
 `;
 
-
-const Loading = () =>
-  (
-    <Container>
-      <Spinner />
-    </Container>
-  )
+const Loading = () => (
+  <Container>
+    <Spinner />
+  </Container>
+);
 
 export default Loading;
