@@ -39,7 +39,6 @@ export default (socket) => {
   };
 
   socket.addEventListener('message', (connection) => {
-    console.log('.');
     try {
       const data = JSON.parse(connection.data);
       if (!events.hasOwnProperty(data.message))

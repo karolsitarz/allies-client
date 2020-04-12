@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { Box, Button, Heading, TextInput } from 'grommet';
 
 import MSG from 'util/msg';
 import { setRoute, ROUTES } from 'stores/route';
 import useSocket from 'hooks/useSocket';
-
-const StyledInput = styled(TextInput)`
-  margin: 3em 0 1em;
-`;
-const StyledForm = styled.form`
-  text-align: center;
-`;
+import Input from 'components/form/Input';
+import Button from 'components/form/Button';
+import Container from 'components/form/Container';
+import Space from 'components/form/Space';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -27,22 +22,26 @@ const Login = () => {
   };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    dispatch(setRoute(ROUTES.LOADING));
+    // loading
     const socket = await openSocket();
-    socket.comm(MSG.LOGIN, input);
+    socket.comm(MSG.LOGIN.PROMPT, input);
+    socket.receive(MSG.LOGIN.SUCCESS, () => {
+      dispatch(setRoute(ROUTES.MAIN));
+    });
   };
 
   return (
-    <Box justify="center" align="center" fill>
-      <Heading margin="none">Hi there! 👋</Heading>
-      <Heading margin="none" level="3">
-        What&apos;s your name?
-      </Heading>
-      <StyledForm onSubmit={handleOnSubmit}>
-        <StyledInput name="name" value={input} onChange={handleOnChange} />
-        <Button type="submit" primary label="Jump in!" />
-      </StyledForm>
-    </Box>
+    <Container fade>
+      <h1>Hi there! 👋</h1>
+      <h3>What&apos;s your name?</h3>
+      <Space size="2em" />
+      <Container as="form" onSubmit={handleOnSubmit}>
+        <Input placeholder="name" value={input} onChange={handleOnChange} />
+        <Button primary type="submit">
+          Jump in!
+        </Button>
+      </Container>
+    </Container>
   );
 };
 

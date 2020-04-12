@@ -1,8 +1,11 @@
 export const ROUTES = {
-  LOADING: 'LOADING',
   LOGIN: 'LOGIN',
-  ROOM_LIST: 'ROOM_LIST',
-  GAME_LOBBY: 'GAME_LOBBY',
+  MAIN: 'MAIN',
+  ROOM: {
+    JOIN: 'ROOM_JOIN',
+    CREATE: 'ROOM_CREATE',
+    LOBBY: 'ROOM_LOBBY',
+  },
 };
 
 const INITIAL_STATE = {
