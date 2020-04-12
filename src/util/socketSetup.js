@@ -42,10 +42,10 @@ export default (socket) => {
     try {
       const data = JSON.parse(connection.data);
       if (!events.hasOwnProperty(data.message))
-        return debugLog(`\t← ${data.message}`, `${COLOR_RED}88`, data);
+        return debugLog(`\t← ${data.message}`, `${COLOR_RED}88`, data.data);
 
       events[data.message](data.data);
-      debugLog(`\t← ${data.message}`, COLOR_RED, data);
+      debugLog(`\t← ${data.message}`, COLOR_RED, data.data);
     } catch (e) {
       console.error('WS Receiving error: ', e);
     }

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import MSG from 'util/msg';
+import { setRoute, ROUTES } from 'stores/route';
 import useSocket from 'hooks/useSocket';
 import Container from 'components/form/Container';
 import Button from 'components/form/Button';
@@ -8,6 +10,7 @@ import Input from 'components/form/Input';
 import Space from 'components/form/Space';
 
 const Main = () => {
+  const dispatch = useDispatch();
   const [input, setInput] = useState('');
   const [socket] = useSocket();
 
@@ -27,6 +30,12 @@ const Main = () => {
     socket.comm(MSG.ROOM.CREATE);
   };
 
+  useEffect(() => {
+    socket.receive(MSG.ROOM.JOIN, (data) => {
+      dispatch(setRoute(ROUTES.ROOM.LOBBY, data));
+    });
+  }, []);
+
   return (
     <Container fade>
       <h1>Join a room:</h1>
@@ -42,7 +51,7 @@ const Main = () => {
         </Button>
       </Container>
       <Space size="2em" />
-      <Button onClick={handleOnCreate}>...or create a room</Button>
+      <Button onClick={handleOnCreate}>...or create a new one</Button>
     </Container>
   );
 };
