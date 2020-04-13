@@ -26,6 +26,8 @@ const StyledButton = styled.label`
   background-color: ${({ theme }) => theme.semiTransparentValue};
   background-image: ${({ theme, primary }) =>
     primary && theme.gradient.primary};
+  opacity: ${({ disabled }) => disabled && '0.5'};
+  pointer-events: ${({ disabled }) => disabled && 'none'};
 
   color: ${({ theme, primary }) => (primary ? theme.base[1] : theme.main[2])};
   fill: ${({ theme, primary }) => (primary ? theme.base[1] : theme.main[2])};
@@ -42,9 +44,9 @@ const HiddenButton = styled.button`
   pointer-events: none;
 `;
 
-const Button = ({ onClick, primary, children, type }) => {
+const Button = ({ onClick, primary, children, type, disabled }) => {
   return (
-    <StyledButton primary={primary} content={children}>
+    <StyledButton primary={primary} content={children} disabled={disabled}>
       {children}
       <HiddenButton onClick={onClick} type={type} />
     </StyledButton>
@@ -56,6 +58,7 @@ export default Button;
 Button.propTypes = {
   onClick: PropTypes.func,
   primary: PropTypes.bool,
+  disabled: PropTypes.bool,
   children: PropTypes.node,
   type: PropTypes.oneOf(['submit', 'reset', 'button']),
 };

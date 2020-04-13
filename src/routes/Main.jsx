@@ -31,8 +31,8 @@ const Main = () => {
   };
 
   useEffect(() => {
-    socket.receive(MSG.ROOM.JOIN, (data) => {
-      dispatch(setRoute(ROUTES.ROOM.LOBBY, data));
+    socket.receive(MSG.ROOM.JOIN, (id) => {
+      dispatch(setRoute(ROUTES.ROOM.LOBBY, { id }));
     });
   }, []);
 

@@ -22,10 +22,12 @@ const Login = () => {
   };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    if (!input.length) return;
     // loading
     const socket = await openSocket();
     socket.comm(MSG.LOGIN.PROMPT, input);
-    socket.receive(MSG.LOGIN.SUCCESS, () => {
+    socket.receive(MSG.LOGIN.SUCCESS, (id) => {
+      socket.id = id;
       dispatch(setRoute(ROUTES.MAIN));
     });
   };

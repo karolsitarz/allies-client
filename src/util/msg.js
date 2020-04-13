@@ -7,5 +7,6 @@ export default {
     CREATE: 'ROOM_CREATE',
     JOIN: 'ROOM_JOIN',
     LEAVE: 'ROOM_LEAVE',
+    UPDATE: 'ROOM_UPDATE',
   },
 };
