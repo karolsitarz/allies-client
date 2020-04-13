@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import MSG from 'util/msg';
-import { setRoute, ROUTES } from 'stores/route';
 import useSocket from 'hooks/useSocket';
 import Container from 'components/form/Container';
 import Button from 'components/form/Button';
@@ -35,29 +34,20 @@ const PlayerContainer = styled.div`
 `;
 
 const Room = () => {
-  const dispatch = useDispatch();
   const [socket] = useSocket();
   const { id, players } = useSelector((state) => state.route.data);
+  const userID = useSelector((state) => state.socket.id);
 
   const handleLeave = () => {
     socket.comm(MSG.ROOM.LEAVE);
-    socket.receive(MSG.ROOM.LEAVE, () => {
-      dispatch(setRoute(ROUTES.MAIN));
-    });
   };
 
   const handleStart = () => {
     console.log(':D');
   };
 
-  useEffect(() => {
-    socket.receive(MSG.ROOM.UPDATE, (players) => {
-      dispatch(setRoute(ROUTES.ROOM.LOBBY, { id, players }));
-    });
-  }, []);
-
   const isHost =
-    players && players.find(({ isHost, id }) => isHost && id === socket.id);
+    players && players.find(({ isHost, id }) => isHost && id === userID);
 
   const canStartGame = players && players.length >= 4 && isHost;
 

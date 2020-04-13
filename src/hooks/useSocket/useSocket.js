@@ -1,23 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setSocket } from 'stores/socket';
-import socketSetup from 'util/socketSetup';
+import socketSetup from './socketSetup';
 import { isDebug, debugLog } from 'util/debug';
 
 const useSocket = () => {
-  const sc = useSelector((state) => state.socket);
   const dispatch = useDispatch();
+  const sc = useSelector((state) => state.socket.socket);
 
   const openSocket = () =>
     new Promise((res, rej) => {
-      if (sc) return rej();
+      if (sc) return rej('Socket already exists.');
+
       const socket = new WebSocket(`ws://192.168.100.20:443`);
-      socketSetup(socket);
+      socketSetup(socket, dispatch);
       dispatch(setSocket(socket));
-      if (isDebug) {
-        debugLog('socket connecting...');
-        window.ws = socket;
-      }
+
+      debugLog('socket connecting...');
+      window.ws_debug = isDebug && socket;
+
       socket.onopen = () => {
         debugLog('socket connected!');
         return res(socket);

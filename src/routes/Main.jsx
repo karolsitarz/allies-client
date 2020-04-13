@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 
 import MSG from 'util/msg';
-import { setRoute, ROUTES } from 'stores/route';
 import useSocket from 'hooks/useSocket';
 import Container from 'components/form/Container';
 import Button from 'components/form/Button';
@@ -10,7 +8,6 @@ import Input from 'components/form/Input';
 import Space from 'components/form/Space';
 
 const Main = () => {
-  const dispatch = useDispatch();
   const [input, setInput] = useState('');
   const [socket] = useSocket();
 
@@ -29,12 +26,6 @@ const Main = () => {
     e.preventDefault();
     socket.comm(MSG.ROOM.CREATE);
   };
-
-  useEffect(() => {
-    socket.receive(MSG.ROOM.JOIN, (id) => {
-      dispatch(setRoute(ROUTES.ROOM.LOBBY, { id }));
-    });
-  }, []);
 
   return (
     <Container fade>

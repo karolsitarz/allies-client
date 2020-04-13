@@ -1,14 +1,12 @@
-import { debugLog } from './debug';
+import { debugLog } from 'util/debug';
 
 const COLOR_GREEN = '#2C7C26';
 const COLOR_RED = '#C11B1B';
 const DEBOUNCE_DELAY = 300;
 
-export default (socket) => {
-  // add the events object
-  socket.events = {};
+export default (socket, dispatch) => {
   socket.debounce = {};
-  const { events, debounce } = socket;
+  const { debounce } = socket;
 
   // send event
   socket.comm = (message, data) => {
@@ -39,23 +37,18 @@ export default (socket) => {
   };
 
   socket.addEventListener('message', (connection) => {
+    let parsed;
     try {
-      const data = JSON.parse(connection.data);
-      if (!events.hasOwnProperty(data.message))
-        return debugLog(`\t← ${data.message}`, `${COLOR_RED}88`, data.data);
-
-      events[data.message](data.data);
-      debugLog(`\t← ${data.message}`, COLOR_RED, data.data);
+      parsed = JSON.parse(connection.data);
     } catch (e) {
       console.error('WS Receiving error: ', e);
     }
+
+    const { message, data } = parsed;
+    debugLog(`\t← ${message}`, COLOR_RED, data);
+    dispatch({
+      type: message,
+      data,
+    });
   });
-
-  // add a receive listener
-  socket.receive = (message, callback) => {
-    if (typeof message !== 'string') return;
-    if (typeof callback !== 'function') return;
-
-    events[message] = callback;
-  };
 };
