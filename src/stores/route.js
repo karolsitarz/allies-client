@@ -45,6 +45,9 @@ export const routeReducer = (state = INITIAL_STATE, action) => {
     case GAME.NIGHT.START:
       return ROUTES.GAME.SLEEP;
 
+    case GAME.ROLE.START:
+      return ROUTES.GAME.VOTE;
+
     case CLOSE:
       return INITIAL_STATE;
 

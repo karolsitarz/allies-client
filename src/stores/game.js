@@ -4,6 +4,7 @@ const { GAME } = MSG;
 const INITIAL_STATE = {
   role: null,
   players: null,
+  isAllVoted: false,
 };
 
 export const gameReducer = (state = INITIAL_STATE, action) => {
@@ -15,6 +16,15 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
 
     case GAME.NIGHT.START: {
       return { ...state, players: null };
+    }
+
+    case GAME.ROLE.START: {
+      const players = action.data;
+      return { ...state, players };
+    }
+
+    case GAME.ROLE.VOTE: {
+      return { ...state, ...action.data };
     }
 
     default:
