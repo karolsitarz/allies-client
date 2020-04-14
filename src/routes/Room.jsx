@@ -51,9 +51,20 @@ const Room = () => {
 
   const canStartGame = players && players.length >= 4 && isHost;
 
+  const onIdClick = () => {
+    const el = document.createElement('textarea');
+    el.value = id;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
+
   return (
     <Container fade grow padded>
-      <h2>Room {id}</h2>
+      <h2>
+        Room <span onClick={onIdClick}>{id}</span>
+      </h2>
       <Button onClick={handleLeave}>Leave</Button>
       <Space size="1em" />
       <PlayerContainer>
