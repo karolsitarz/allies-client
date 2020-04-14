@@ -16,79 +16,34 @@ export const ROUTES = {
   },
 };
 
-const INITIAL_STATE = {
-  route: ROUTES.LOGIN,
-  data: null,
-};
+const INITIAL_STATE = ROUTES.LOGIN;
 export const ROUTE_SET = 'ROUTE_SET';
 
-export const setRoute = (route, data) => ({
+export const setRoute = (route) => ({
   type: ROUTE_SET,
   route,
-  data,
 });
 
 export const routeReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    // case ROUTE_SET:
-    //   if (!action.route) return state;
-    //   const { route, data } = action;
-    //   return { route, data };
+    case ROUTE_SET:
+      if (!action.route) return state;
+      return action.route;
 
-    case LOGIN.SUCCESS: {
-      return {
-        ...state,
-        route: ROUTES.MAIN,
-      };
-    }
+    case LOGIN.SUCCESS:
+      return ROUTES.MAIN;
 
-    case ROOM.JOIN: {
-      const id = action.data;
-      if (!id) return state;
+    case ROOM.JOIN:
+      return ROUTES.ROOM.LOBBY;
 
-      return {
-        route: ROUTES.ROOM.LOBBY,
-        data: {
-          ...state.data,
-          id,
-        },
-      };
-    }
+    case ROOM.LEAVE:
+      return ROUTES.MAIN;
 
-    case ROOM.LEAVE: {
-      return { ...state, route: ROUTES.MAIN };
-    }
+    case GAME.START:
+      return ROUTES.GAME.START;
 
-    case ROOM.UPDATE: {
-      const players = action.data;
-      if (!players) return state;
-
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          players,
-        },
-      };
-    }
-
-    case GAME.START: {
-      const role = action.data;
-      return {
-        route: ROUTES.GAME.START,
-        data: {
-          ...state.data,
-          role,
-        },
-      };
-    }
-
-    case `${GAME.STAGE.NIGHT}_${GAME.STATE.START}`: {
-      return {
-        ...state,
-        route: ROUTES.GAME.SLEEP,
-      };
-    }
+    case GAME.NIGHT.START:
+      return ROUTES.GAME.SLEEP;
 
     case CLOSE:
       return INITIAL_STATE;

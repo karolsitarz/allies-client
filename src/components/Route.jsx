@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const Route = ({ to: To, from }) => {
-  const { route } = useSelector((state) => state.route);
+  const route = useSelector((state) => state.route);
   if (route !== from) return null;
   return <To />;
 };

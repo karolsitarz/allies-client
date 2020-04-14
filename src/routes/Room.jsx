@@ -35,7 +35,7 @@ const PlayerContainer = styled.div`
 
 const Room = () => {
   const [socket] = useSocket();
-  const { id, players } = useSelector((state) => state.route.data);
+  const { id, players } = useSelector((state) => state.room);
   const userID = useSelector((state) => state.socket.id);
 
   const handleLeave = () => {

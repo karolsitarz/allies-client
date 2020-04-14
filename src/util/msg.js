@@ -12,17 +12,21 @@ const MSG = {
   },
   GAME: {
     START: 'GAME_START',
-    STAGE: {
-      MAFIA: 'MAFIA',
-      DAY: 'DAY',
-      NIGHT: 'NIGHT',
+    END: 'GAME_END',
+    ROLE: {
+      START: 'ROLE_START',
+      VOTE: 'ROLE_VOTE',
+      VOTED: 'ROLE_VOTED',
+      UNVOTED: 'ROLE_UNVOTED',
+      END: 'ROLE_END',
     },
-    STATE: {
-      START: 'START',
-      VOTE: 'VOTE',
-      VOTED: 'VOTED',
-      UNVOTED: 'UNVOTED',
-      END: 'END',
+    NIGHT: {
+      START: 'NIGHT_START',
+      END: 'NIGHT_END',
+    },
+    DAY: {
+      START: 'DAY_START',
+      END: 'DAY_END',
     },
   },
 };

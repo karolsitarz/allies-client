@@ -25,7 +25,7 @@ const ROLES = {
 };
 
 const GameStart = () => {
-  const { role } = useSelector((state) => state.route.data);
+  const { role } = useSelector((state) => state.game);
   const { name, description, emoji } = ROLES[role];
   return (
     <Container fade grow padded>
