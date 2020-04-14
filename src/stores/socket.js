@@ -17,10 +17,15 @@ export const socketReducer = (state = INITIAL_STATE, action) => {
       const { socket } = action;
       if (!socket) return state;
       return { ...state, socket };
+
     case MSG.LOGIN.SUCCESS:
       const id = action.data;
       if (!id) return state;
       return { ...state, id };
+
+    case MSG.CLOSE:
+      return INITIAL_STATE;
+
     default:
       return state;
   }

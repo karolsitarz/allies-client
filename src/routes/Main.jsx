@@ -7,19 +7,22 @@ import Button from 'components/form/Button';
 import Input from 'components/form/Input';
 import Space from 'components/form/Space';
 
+const ALLOWED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
 const Main = () => {
   const [input, setInput] = useState('');
   const [socket] = useSocket();
 
   const handleOnChange = (e) => {
     if (!e || !e.target) return;
-    const { value } = e.target;
-    if (value.length > 6) return;
-    setInput(value.toUpperCase());
+    const value = e.target.value.toUpperCase();
+    if (!ALLOWED_CHARS.includes(value.substr(-1))) return;
+    if (value.length > 5) return;
+    setInput(value);
   };
   const handleOnJoin = (e) => {
     e.preventDefault();
-    if (input.length !== 6) return;
+    if (input.length !== 5) return;
     socket.comm(MSG.ROOM.JOIN, input);
   };
   const handleOnCreate = (e) => {

@@ -62,6 +62,9 @@ export const routeReducer = (state = INITIAL_STATE, action) => {
         },
       };
 
+    case MSG.CLOSE:
+      return INITIAL_STATE;
+
     default:
       return state;
   }

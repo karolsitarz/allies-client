@@ -33,7 +33,7 @@ const TextInputSpan = styled.span`
   }
 `;
 const StyledTextInput = styled.input`
-  border-radius: 1em;
+  border-radius: 0.75em;
   overflow: hidden;
   padding: 0.75em 1.95em 0.75em 2em;
   display: inline-block;

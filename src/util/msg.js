@@ -1,4 +1,5 @@
-export default {
+const MSG = {
+  CLOSE: 'SOCKET_CLOSE',
   LOGIN: {
     PROMPT: 'LOGIN_PROMPT',
     SUCCESS: 'LOGIN_SUCCESS',
@@ -9,4 +10,9 @@ export default {
     LEAVE: 'ROOM_LEAVE',
     UPDATE: 'ROOM_UPDATE',
   },
+  GAME: {
+    START: 'GAME_START',
+  },
 };
+
+export default MSG;

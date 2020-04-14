@@ -6,7 +6,7 @@ const StyledButton = styled.label`
   border-radius: 5em;
   overflow: hidden;
   padding: ${({ content }) =>
-    typeof content === 'string' ? '0.75em 3.7em 0.75em 4em' : '0.75em 1.5em'};
+    typeof content === 'string' ? '0.75em 3.7em 0.75em 4em' : '1em 1.5em'};
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.65em;
@@ -19,7 +19,7 @@ const StyledButton = styled.label`
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 0 2px #00000014;
+  box-shadow: ${({ primary }) => !primary && '0 0 0 2px #00000014'};
   margin: 0.5em 0;
   background-size: cover;
   background-position: center;

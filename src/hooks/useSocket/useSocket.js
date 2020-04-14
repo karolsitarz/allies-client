@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSocket } from 'stores/socket';
 import socketSetup from './socketSetup';
 import { isDebug, debugLog } from 'util/debug';
+import MSG from 'util/msg';
 
 const useSocket = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,11 @@ const useSocket = () => {
       socket.onopen = () => {
         debugLog('socket connected!');
         return res(socket);
+      };
+
+      socket.onclose = () => {
+        debugLog('socket closed!');
+        dispatch({ type: MSG.CLOSE });
       };
     });
 

@@ -43,7 +43,7 @@ const Room = () => {
   };
 
   const handleStart = () => {
-    console.log(':D');
+    socket.comm(MSG.GAME.START);
   };
 
   const isHost =
