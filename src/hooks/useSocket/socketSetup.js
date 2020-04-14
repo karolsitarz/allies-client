@@ -21,7 +21,10 @@ export default (socket, dispatch) => {
 
     if (new Date() - event.date < DEBOUNCE_DELAY) {
       clearTimeout(event.timeout);
-      event.timeout = setTimeout(socket.comm(message, data), DEBOUNCE_DELAY);
+      event.timeout = setTimeout(
+        () => socket.comm(message, data),
+        DEBOUNCE_DELAY
+      );
       event.date = new Date();
       return debugLog(`→ ${message}`, `${COLOR_GREEN}88`, data);
     }
