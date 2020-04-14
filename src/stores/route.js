@@ -13,6 +13,12 @@ export const ROUTES = {
     START: 'GAME_START',
     SLEEP: 'GAME_SLEEP',
     VOTE: 'GAME_VOTE',
+    NIGHT: {
+      END: 'GAME_NIGHT_END',
+    },
+    DAY: {
+      END: 'GAME_DAY_END',
+    },
   },
 };
 
@@ -47,6 +53,9 @@ export const routeReducer = (state = INITIAL_STATE, action) => {
 
     case GAME.ROLE.START:
       return ROUTES.GAME.VOTE;
+
+    case GAME.NIGHT.END:
+      return ROUTES.GAME.NIGHT.END;
 
     case CLOSE:
       return INITIAL_STATE;

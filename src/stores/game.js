@@ -4,7 +4,9 @@ const { GAME } = MSG;
 const INITIAL_STATE = {
   role: null,
   players: null,
-  isAllVoted: false,
+  isVoteValid: false,
+  isKilled: false,
+  killedList: null,
 };
 
 export const gameReducer = (state = INITIAL_STATE, action) => {
@@ -24,6 +26,10 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
     }
 
     case GAME.ROLE.VOTE: {
+      return { ...state, ...action.data };
+    }
+
+    case GAME.NIGHT.END: {
       return { ...state, ...action.data };
     }
 

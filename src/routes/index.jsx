@@ -8,6 +8,7 @@ import Room from './Room';
 import Sleep from './Sleep';
 import GameStart from './GameStart';
 import Vote from './Vote';
+import NightEnd from './NightEnd';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Route to={GameStart} from={ROUTES.GAME.START} />
       <Route to={Sleep} from={ROUTES.GAME.SLEEP} />
       <Route to={Vote} from={ROUTES.GAME.VOTE} />
+      <Route to={NightEnd} from={ROUTES.GAME.NIGHT.END} />
     </>
   );
 };
