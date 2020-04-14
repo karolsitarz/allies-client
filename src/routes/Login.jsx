@@ -6,6 +6,7 @@ import Input from 'components/form/Input';
 import Button from 'components/form/Button';
 import Container from 'components/form/Container';
 import Space from 'components/form/Space';
+import Emoji from 'components/Emoji';
 
 const Login = () => {
   const [input, setInput] = useState('');
@@ -27,10 +28,7 @@ const Login = () => {
   return (
     <Container fade>
       <h1>
-        Hi there!{' '}
-        <span role="img" aria-label="hand waving">
-          👋
-        </span>
+        Hi there! <Emoji emoji="👋" label="waving hand" />
       </h1>
       <h3>What&apos;s your name?</h3>
       <Space size="2em" />

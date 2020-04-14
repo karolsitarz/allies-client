@@ -1,4 +1,5 @@
 import MSG from 'util/msg';
+const { CLOSE, LOGIN, ROOM, GAME } = MSG;
 
 export const ROUTES = {
   LOGIN: 'LOGIN',
@@ -7,6 +8,11 @@ export const ROUTES = {
     JOIN: 'ROOM_JOIN',
     CREATE: 'ROOM_CREATE',
     LOBBY: 'ROOM_LOBBY',
+  },
+  GAME: {
+    START: 'GAME_START',
+    SLEEP: 'GAME_SLEEP',
+    VOTE: 'GAME_VOTE',
   },
 };
 
@@ -29,13 +35,14 @@ export const routeReducer = (state = INITIAL_STATE, action) => {
     //   const { route, data } = action;
     //   return { route, data };
 
-    case MSG.LOGIN.SUCCESS:
+    case LOGIN.SUCCESS: {
       return {
         ...state,
         route: ROUTES.MAIN,
       };
+    }
 
-    case MSG.ROOM.JOIN:
+    case ROOM.JOIN: {
       const id = action.data;
       if (!id) return state;
 
@@ -46,11 +53,13 @@ export const routeReducer = (state = INITIAL_STATE, action) => {
           id,
         },
       };
+    }
 
-    case MSG.ROOM.LEAVE:
+    case ROOM.LEAVE: {
       return { ...state, route: ROUTES.MAIN };
+    }
 
-    case MSG.ROOM.UPDATE:
+    case ROOM.UPDATE: {
       const players = action.data;
       if (!players) return state;
 
@@ -61,8 +70,27 @@ export const routeReducer = (state = INITIAL_STATE, action) => {
           players,
         },
       };
+    }
 
-    case MSG.CLOSE:
+    case GAME.START: {
+      const role = action.data;
+      return {
+        route: ROUTES.GAME.START,
+        data: {
+          ...state.data,
+          role,
+        },
+      };
+    }
+
+    case `${GAME.STAGE.NIGHT}_${GAME.STATE.START}`: {
+      return {
+        ...state,
+        route: ROUTES.GAME.SLEEP,
+      };
+    }
+
+    case CLOSE:
       return INITIAL_STATE;
 
     default:

@@ -12,6 +12,18 @@ const MSG = {
   },
   GAME: {
     START: 'GAME_START',
+    STAGE: {
+      MAFIA: 'MAFIA',
+      DAY: 'DAY',
+      NIGHT: 'NIGHT',
+    },
+    STATE: {
+      START: 'START',
+      VOTE: 'VOTE',
+      VOTED: 'VOTED',
+      UNVOTED: 'UNVOTED',
+      END: 'END',
+    },
   },
 };
 

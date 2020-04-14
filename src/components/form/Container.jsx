@@ -12,6 +12,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   align-self: stretch;
+  text-align: center;
   flex-grow: ${({ grow }) => grow && '1'};
   flex-direction: ${({ horizontal }) => !horizontal && 'column'};
   padding: ${({ padded }) => padded && '1em'};
