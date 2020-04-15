@@ -7,9 +7,11 @@ import Button from 'components/form/Button';
 import Container from 'components/form/Container';
 import Space from 'components/form/Space';
 import Emoji from 'components/Emoji';
+import EmojiInput from 'components/form/EmojiInput';
 
 const Login = () => {
   const [input, setInput] = useState('');
+  const [emoji, setEmoji] = useState('😀');
   const [, openSocket] = useSocket();
 
   const handleOnChange = (e) => {
@@ -22,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     if (!input.length) return;
     const socket = await openSocket();
-    socket.comm(MSG.LOGIN.PROMPT, input);
+    socket.comm(MSG.LOGIN.PROMPT, { name: input, emoji });
   };
 
   return (
@@ -32,6 +34,7 @@ const Login = () => {
       </h1>
       <h3>What&apos;s your name?</h3>
       <Space size="2em" />
+      <EmojiInput value={emoji} onChange={(emoji) => setEmoji(emoji)} />
       <Container as="form" onSubmit={handleOnSubmit}>
         <Input placeholder="name" value={input} onChange={handleOnChange} />
         <Button primary type="submit">

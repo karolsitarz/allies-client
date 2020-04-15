@@ -23,16 +23,15 @@ const mainTheme = {
     4: '#00000028',
   },
 
-  transition: (props = {}) => {
-    const duration = props.duration || '0.3';
-    const easing = props.easing || 'ease';
-    const properties = props.properties || ['opacity', 'transform'];
-    const delay = props.delay || '0';
-
-    return properties
+  transition: ({
+    duration = 0.2,
+    easing = 'ease',
+    properties = ['opacity', 'transform'],
+    delay = '0',
+  } = {}) =>
+    properties
       .map((property) => `${property} ${duration}s ${easing} ${delay}s`)
-      .toString();
-  },
+      .toString(),
 };
 
 export default mainTheme;
