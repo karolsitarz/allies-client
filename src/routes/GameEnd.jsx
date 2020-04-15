@@ -6,19 +6,17 @@ import Space from 'components/form/Space';
 import Emoji from 'components/Emoji';
 import ROLES from 'util/roles';
 
-const GameStart = () => {
-  const { role } = useSelector((state) => state.game);
-  const { name, description, emoji } = ROLES[role];
+const Reveal = () => {
+  const { gameEnd: role } = useSelector((state) => state.game);
+  const { name, emoji } = ROLES[role];
   return (
     <Container fade grow padded>
-      <h2>Your role is...</h2>
-      <h1>{name}</h1>
+      <h1>GAME OVER</h1>
+      <h2>{name} won!</h2>
       <Space size="1em" />
       <Emoji {...emoji} size="5em" />
-      <Space size="2em" />
-      <p>{description}</p>
     </Container>
   );
 };
 
-export default GameStart;
+export default Reveal;

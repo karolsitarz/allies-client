@@ -11,6 +11,7 @@ export const ROUTES = {
   },
   GAME: {
     START: 'GAME_START',
+    END: 'GAME_END',
     SLEEP: 'GAME_SLEEP',
     VOTE: 'GAME_VOTE',
     SUMMARY: 'GAME_SUMMARY',
@@ -52,6 +53,12 @@ export const routeReducer = (state = INITIAL_STATE, action) => {
 
     case GAME.SUMMARY:
       return ROUTES.GAME.SUMMARY;
+
+    case GAME.REVEAL:
+      return ROUTES.GAME.REVEAL;
+
+    case GAME.END:
+      return ROUTES.GAME.END;
 
     case CLOSE:
       return INITIAL_STATE;

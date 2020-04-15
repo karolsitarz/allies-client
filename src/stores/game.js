@@ -7,6 +7,11 @@ const INITIAL_STATE = {
   isVoteValid: false,
   isKilled: false,
   killedList: null,
+  reveal: {
+    name: null,
+    role: null,
+  },
+  gameEnd: null,
 };
 
 export const gameReducer = (state = INITIAL_STATE, action) => {
@@ -31,6 +36,14 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
 
     case GAME.SUMMARY: {
       return { ...state, ...action.data };
+    }
+
+    case GAME.REVEAL: {
+      return { ...state, reveal: action.data };
+    }
+
+    case GAME.END: {
+      return { ...state, gameEnd: action.data };
     }
 
     default:
