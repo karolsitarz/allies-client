@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Container from 'components/form/Container';
 import Space from 'components/form/Space';
 import Emoji from 'components/Emoji';
+import LoadingBar from 'components/LoadingBar';
 
 const Casualties = ({ killed }) => {
   if (!killed) return null;
@@ -13,8 +14,10 @@ const Casualties = ({ killed }) => {
     <>
       <Space size="2em" />
       <h3>Total casualties:</h3>
-      {killed.map(({ id, name }) => (
-        <span key={`killed-${id}`}>{name}</span>
+      {killed.map(({ id, name, emoji }) => (
+        <span key={`killed-${id}`}>
+          {emoji} {name}
+        </span>
       ))}
     </>
   );
@@ -45,6 +48,7 @@ const NightEnd = () => {
       <Space size="1em" />
       <Emoji emoji="😌" label="relieved face" size="5em" />
       {killedList && <Casualties killed={killedList} />}
+      <LoadingBar />
     </Container>
   );
 };

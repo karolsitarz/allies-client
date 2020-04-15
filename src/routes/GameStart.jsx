@@ -5,6 +5,7 @@ import Container from 'components/form/Container';
 import Space from 'components/form/Space';
 import Emoji from 'components/Emoji';
 import ROLES from 'util/roles';
+import LoadingBar from 'components/LoadingBar';
 
 const GameStart = () => {
   const { role } = useSelector((state) => state.game);
@@ -17,6 +18,7 @@ const GameStart = () => {
       <Emoji {...emoji} size="5em" />
       <Space size="2em" />
       <p>{description}</p>
+      <LoadingBar time={10000} />
     </Container>
   );
 };

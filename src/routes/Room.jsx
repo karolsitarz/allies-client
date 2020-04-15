@@ -14,16 +14,10 @@ const Player = styled.div`
   display: flex;
   align-items: center;
   box-shadow: inset 0 -1px 0 0px #00000021;
+`;
 
-  &::before {
-    content: '';
-    display: block;
-    height: 1.5em;
-    width: 1.5em;
-    border-radius: 0.5em;
-    background-color: #00000021;
-    margin-right: 0.5em;
-  }
+const Emoji = styled.span`
+  margin-right: 0.5em;
 `;
 
 const PlayerContainer = styled.div`
@@ -69,7 +63,12 @@ const Room = () => {
       <Space size="1em" />
       <PlayerContainer>
         {players &&
-          players.map(({ id, name }) => <Player key={id}>{name}</Player>)}
+          players.map(({ id, name, emoji }) => (
+            <Player key={id}>
+              <Emoji>{emoji}</Emoji>
+              {name}
+            </Player>
+          ))}
       </PlayerContainer>
       <Space size="1em" />
       <Button primary disabled={!canStartGame} onClick={handleStart}>

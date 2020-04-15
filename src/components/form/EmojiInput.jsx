@@ -34,10 +34,17 @@ const EmojiInput = ({ value, onChange }) => {
     const emoji = emojiRegex().exec(value);
     if (emoji && emoji[0]) onChange(emoji[0]);
   };
+
+  const handleFocus = (e) => e.target.select();
+
   return (
     <EmojiInputContainer>
       <span>{value}</span>
-      <EmojiInputComp onChange={handleOnChange} value="" />
+      <EmojiInputComp
+        onFocus={handleFocus}
+        onChange={handleOnChange}
+        value=""
+      />
     </EmojiInputContainer>
   );
 };

@@ -12,16 +12,30 @@ const Player = styled.div`
   padding: 1em;
   display: flex;
   align-items: center;
-  box-shadow: inset 0 -1px 0 0px #00000021;
+  border-radius: 0.5em;
+  margin-bottom: 0.25em;
+  box-shadow: 0 1em 2em 0px #00000014;
 
-  &::before {
-    content: '';
-    display: block;
-    height: 1.5em;
-    width: 1.5em;
-    border-radius: 0.5em;
-    background-color: #00000021;
-    margin-right: 0.5em;
+  background-color: ${({ isMostVoted }) => isMostVoted && '#ffff0011'};
+
+  margin-bottom: ${({ isPlayer }) => isPlayer && '1.5em'};
+  order: ${({ isPlayer }) => isPlayer && '-1'};
+
+  background-color: ${({ isDead, theme }) => isDead && theme.alpha[3]};
+  opacity: ${({ isDead }) => isDead && '0.4'};
+  order: ${({ isDead }) => isDead && '10'};
+`;
+
+const Emoji = styled.span`
+  margin-right: 0.5em;
+`;
+
+const LastVotes = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: auto;
+  > span {
+    margin-left: -0.75em;
   }
 `;
 
@@ -30,26 +44,37 @@ const PlayerContainer = styled.div`
   flex-direction: column;
   flex-grow: 1;
   align-self: stretch;
+  overflow-y: scroll;
+  flex-basis: 0;
 `;
 
 const Room = () => {
   const [socket] = useSocket();
+  const userID = useSelector((state) => state.socket.id);
   const { players, role, isVoteValid } = useSelector((state) => state.game);
 
   const handleOnVote = (id) => socket.comm(MSG.GAME.VOTE, id);
 
   return (
     <Container fade grow padded>
-      <h1>You are {role}</h1>
+      <h3>vote</h3>
       <PlayerContainer>
         {players &&
-          players.map(({ id, name, voted, isMostVoted }) => (
-            <Player key={id} onClick={() => handleOnVote(id)}>
-              {isMostVoted && ':DD '}
+          players.map(({ id, name, voted, isMostVoted, emoji, isDead }) => (
+            <Player
+              isPlayer={userID === id}
+              isMostVoted={isMostVoted}
+              isDead={isDead}
+              key={id}
+              onClick={() => handleOnVote(id)}
+            >
+              <Emoji>{emoji}</Emoji>
               {name}{' '}
-              {voted.map((id) => (
-                <span key={`voted-${id}`}>{id}</span>
-              ))}
+              <LastVotes>
+                {voted.map(({ id, emoji }) => (
+                  <span key={`voted-${id}`}>{emoji}</span>
+                ))}
+              </LastVotes>
             </Player>
           ))}
       </PlayerContainer>

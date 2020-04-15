@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   killedList: null,
   reveal: {
     name: null,
+    emoji: null,
     role: null,
   },
   gameEnd: null,
