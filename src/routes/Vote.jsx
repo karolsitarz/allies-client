@@ -36,7 +36,7 @@ const Room = () => {
   const [socket] = useSocket();
   const { players, role, isVoteValid } = useSelector((state) => state.game);
 
-  const handleOnVote = (id) => socket.comm(MSG.GAME.ROLE.VOTE, id);
+  const handleOnVote = (id) => socket.comm(MSG.GAME.VOTE, id);
 
   return (
     <Container fade grow padded>

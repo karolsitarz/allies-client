@@ -16,20 +16,20 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
       return { ...state, role };
     }
 
-    case GAME.NIGHT.START: {
+    case GAME.SLEEP: {
       return { ...state, players: null };
     }
 
-    case GAME.ROLE.START: {
+    case GAME.WAKE: {
       const players = action.data;
       return { ...state, players };
     }
 
-    case GAME.ROLE.VOTE: {
+    case GAME.VOTE: {
       return { ...state, ...action.data };
     }
 
-    case GAME.NIGHT.END: {
+    case GAME.SUMMARY: {
       return { ...state, ...action.data };
     }
 

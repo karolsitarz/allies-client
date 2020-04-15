@@ -1,12 +1,32 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Container from 'components/form/Container';
 import Space from 'components/form/Space';
 import Emoji from 'components/Emoji';
 
+const Casualties = ({ killed }) => {
+  if (!killed) return null;
+  if (!killed.length) return null;
+  return (
+    <>
+      <Space size="2em" />
+      <h3>Total casualties:</h3>
+      {killed.map(({ id, name }) => (
+        <span key={`killed-${id}`}>{name}</span>
+      ))}
+    </>
+  );
+};
+
+Casualties.propTypes = {
+  killed: PropTypes.array,
+};
+
 const NightEnd = () => {
   const { isKilled, killedList } = useSelector((state) => state.game);
+
   if (isKilled)
     return (
       <Container fade grow padded>
@@ -14,11 +34,7 @@ const NightEnd = () => {
         <h1>DEAD!</h1>
         <Space size="1em" />
         <Emoji emoji="💀" label="skull" size="5em" />
-        <Space size="2em" />
-        <h3>Total casualties:</h3>
-        {killedList.map(({ id, name }) => (
-          <span key={`killed-${id}`}>{name}</span>
-        ))}
+        {killedList && <Casualties killed={killedList} />}
       </Container>
     );
 
@@ -28,11 +44,7 @@ const NightEnd = () => {
       <h1>SAFE!</h1>
       <Space size="1em" />
       <Emoji emoji="😌" label="relieved face" size="5em" />
-      <Space size="2em" />
-      <h3>Total casualties:</h3>
-      {killedList.map(({ id, name }) => (
-        <span key={`killed-${id}`}>{name}</span>
-      ))}
+      {killedList && <Casualties killed={killedList} />}
     </Container>
   );
 };
