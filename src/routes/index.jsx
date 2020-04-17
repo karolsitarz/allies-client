@@ -11,6 +11,7 @@ import Vote from './Vote';
 import Summary from './Summary';
 import Reveal from './Reveal';
 import GameEnd from './GameEnd';
+import Modals from 'components/Modals';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
       <Route to={Summary} from={ROUTES.GAME.SUMMARY} />
       <Route to={Reveal} from={ROUTES.GAME.REVEAL} />
       <Route to={GameEnd} from={ROUTES.GAME.END} />
+      <Modals />
     </>
   );
 };
