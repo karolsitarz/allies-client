@@ -16,7 +16,7 @@ const EmojiInputContainer = styled.label`
   width: 2.5em;
   height: 2.5em;
   border-radius: 25%;
-  background-color: ${({ theme }) => theme.alpha[2]};
+  background-color: ${({ theme }) => theme.alpha[1]};
   display: flex;
   justify-content: center;
   align-items: center;

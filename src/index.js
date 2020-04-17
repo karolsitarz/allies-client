@@ -15,6 +15,8 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 600px;
+  margin: auto;
 `;
 
 ReactDOM.render(

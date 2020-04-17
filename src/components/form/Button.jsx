@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 const StyledButton = styled.label`
   border-radius: 5em;
   overflow: hidden;
-  padding: ${({ content }) =>
-    typeof content === 'string' ? '0.75em 3.7em 0.75em 4em' : '1em 1.5em'};
+  padding: ${({ $content }) =>
+    typeof $content === 'string' ? '0.75em 2.7em 0.75em 3em' : '1em 1.5em'};
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.65em;
@@ -19,11 +19,10 @@ const StyledButton = styled.label`
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  box-shadow: ${({ primary }) => !primary && '0 0 0 2px #00000014'};
   margin: 0.5em 0;
   background-size: cover;
   background-position: center;
-  background-color: ${({ theme }) => theme.semiTransparentValue};
+  background-color: ${({ theme }) => theme.alpha[1]};
   background-image: ${({ theme, primary }) =>
     primary && theme.gradient.primary};
   opacity: ${({ disabled }) => disabled && '0.5'};
@@ -46,7 +45,7 @@ const HiddenButton = styled.button`
 
 const Button = ({ onClick, primary, children, type, disabled }) => {
   return (
-    <StyledButton primary={primary} content={children} disabled={disabled}>
+    <StyledButton primary={primary} $content={children} disabled={disabled}>
       {children}
       <HiddenButton onClick={onClick} type={type} />
     </StyledButton>

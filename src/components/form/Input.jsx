@@ -38,7 +38,7 @@ const StyledTextInput = styled.input`
   padding: 0.75em 1.95em 0.75em 2em;
   display: inline-block;
   color: ${({ theme }) => theme.main[2]};
-  background-color: ${({ theme }) => theme.alpha[2]};
+  background-color: ${({ theme }) => theme.alpha[1]};
   border: 0;
   text-align: center;
   font-weight: 700;

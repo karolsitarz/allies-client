@@ -3,10 +3,11 @@ const { GAME } = MSG;
 
 const INITIAL_STATE = {
   role: null,
-  players: null,
+  players: [],
   isVoteValid: false,
+  voteMessage: '',
   isKilled: false,
-  killedList: null,
+  killedList: [],
   reveal: {
     name: null,
     emoji: null,
@@ -27,8 +28,8 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
     }
 
     case GAME.WAKE: {
-      const players = action.data;
-      return { ...state, players };
+      const { players, message } = action.data;
+      return { ...state, players, voteMessage: message };
     }
 
     case GAME.VOTE: {

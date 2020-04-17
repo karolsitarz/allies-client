@@ -3,7 +3,7 @@ const { ROOM } = MSG;
 
 const INITIAL_STATE = {
   id: null,
-  players: null,
+  players: [],
 };
 
 export const roomReducer = (state = INITIAL_STATE, action) => {
