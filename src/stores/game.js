@@ -38,9 +38,10 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
     }
 
     case GAME.SUMMARY: {
-      const { isKilled, killed } = action.data;
+      const { isKilled, killed, players: players_roles } = action.data;
       const players = state.players.map((player) => ({
         ...player,
+        role: player.role || (isKilled && players_roles[player.id]),
         isDead: player.isDead || killed.includes(player.id),
       }));
       return { ...state, players, isKilled, killed };

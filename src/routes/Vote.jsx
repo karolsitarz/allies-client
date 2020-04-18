@@ -27,8 +27,11 @@ const Room = () => {
   const { players = [], voteMessage, tally } = useSelector(
     (state) => state.game
   );
-
-  const handleOnVote = (id) => socket.comm(MSG.GAME.VOTE, id);
+  const { isDead } = players.find((player) => player.id === userID);
+  const handleOnVote = (id) => {
+    if (isDead) return;
+    socket.comm(MSG.GAME.VOTE, id);
+  };
 
   return (
     <Container fade grow padded>

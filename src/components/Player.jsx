@@ -32,12 +32,12 @@ const StyledPlayer = styled.div`
   box-shadow: ${({ isMostVoted, theme }) =>
     isMostVoted && `inset 0 0 0 3px ${theme.alpha[3]}`};
 
-  margin-bottom: ${({ isCurrent }) => isCurrent && '1.5em'};
-  order: ${({ isCurrent }) => isCurrent && '-1'};
-
   background-color: ${({ isDead, theme }) => isDead && theme.alpha[3]};
   opacity: ${({ isDead }) => isDead && '0.4'};
   order: ${({ isDead }) => isDead && '10'};
+
+  margin-bottom: ${({ isCurrent }) => isCurrent && '1.5em'};
+  order: ${({ isCurrent }) => isCurrent && '-1'};
 
   ${Name} {
     text-decoration: ${({ isDead }) => isDead && 'line-through'};

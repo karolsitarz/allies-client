@@ -12,7 +12,7 @@ const Reveal = () => {
   return (
     <Container fade grow padded>
       <h1>GAME OVER</h1>
-      <h2>{name} won!</h2>
+      <h2>{name}s won!</h2>
       <Space size="1em" />
       <Emoji {...emoji} size="5em" />
     </Container>

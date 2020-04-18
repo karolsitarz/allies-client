@@ -33,7 +33,11 @@ Casualties.propTypes = {
 };
 
 const NightEnd = () => {
-  const { isKilled, killed } = useSelector((state) => state.game);
+  const userID = useSelector((state) => state.socket.id);
+  const { isKilled, killed = [], players = [] } = useSelector(
+    (state) => state.game
+  );
+  const { isDead } = players.find((player) => player.id === userID);
 
   if (isKilled)
     return (
@@ -42,7 +46,21 @@ const NightEnd = () => {
         <h1>DEAD!</h1>
         <Space size="1em" />
         <Emoji emoji="💀" label="skull" size="5em" />
+        {killed.length > 1 && <Casualties killed={killed} />}
+        <LoadingBar />
+      </Container>
+    );
+
+  if (isDead)
+    return (
+      <Container fade grow padded>
+        <h2>You are...</h2>
+        <h1>DEAD!</h1>
+        <i>...well, yeah. We&apos;ve already estabilished that.</i>
+        <Space size="1em" />
+        <Emoji emoji="💀" label="skull" size="5em" />
         <Casualties killed={killed} />
+        <LoadingBar />
       </Container>
     );
 
