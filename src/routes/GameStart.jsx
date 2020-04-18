@@ -8,8 +8,10 @@ import ROLES from 'util/roles';
 import LoadingBar from 'components/LoadingBar';
 
 const GameStart = () => {
-  const { role } = useSelector((state) => state.game);
-  const { name, description, emoji } = ROLES[role];
+  const { players } = useSelector((state) => state.game);
+  const userID = useSelector((state) => state.socket.id);
+  const { role } = players.find((player) => player.id === userID) || {};
+  const { name, description, emoji } = ROLES[role] || {};
   return (
     <Container fade grow padded>
       <h2>Your role is...</h2>

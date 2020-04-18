@@ -2,46 +2,58 @@ import MSG from 'util/msg';
 const { GAME } = MSG;
 
 const INITIAL_STATE = {
-  role: null,
   players: [],
   isVoteValid: false,
   voteMessage: '',
+  tally: [],
   isKilled: false,
-  killedList: [],
-  reveal: {
-    name: null,
-    emoji: null,
-    role: null,
-  },
+  killed: [],
   gameEnd: null,
 };
 
 export const gameReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GAME.START: {
-      const role = action.data;
-      return { ...state, role };
+      const players = action.data;
+      return { ...state, players };
     }
 
     case GAME.SLEEP: {
-      return { ...state, players: null };
+      const players = state.players.map((player) => ({ ...player, voted: [] }));
+      return { ...state, players, tally: [] };
     }
 
     case GAME.WAKE: {
-      const { players, message } = action.data;
-      return { ...state, players, voteMessage: message };
+      const message = action.data;
+      return { ...state, voteMessage: message };
     }
 
     case GAME.VOTE: {
-      return { ...state, ...action.data };
+      const { isVoteValid, voted, tally } = action.data;
+      const players = state.players.map((player, i) => ({
+        ...player,
+        voted: voted[i],
+      }));
+      return { ...state, players, isVoteValid, tally };
     }
 
     case GAME.SUMMARY: {
-      return { ...state, ...action.data };
+      const { isKilled, killed } = action.data;
+      const players = state.players.map((player) => ({
+        ...player,
+        isDead: player.isDead || killed.includes(player.id),
+      }));
+      return { ...state, players, isKilled, killed };
     }
 
     case GAME.REVEAL: {
-      return { ...state, reveal: action.data };
+      const { id, role } = action.data;
+      const players = state.players.map((player) => ({
+        ...player,
+        role: player.role || (player.id === id && role),
+        isDead: player.isDead || player.id === id,
+      }));
+      return { ...state, killed: [id], players };
     }
 
     case GAME.END: {

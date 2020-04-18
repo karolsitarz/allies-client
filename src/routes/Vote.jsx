@@ -24,7 +24,9 @@ const LastVotes = styled.div`
 const Room = () => {
   const [socket] = useSocket();
   const userID = useSelector((state) => state.socket.id);
-  const { players = [], voteMessage } = useSelector((state) => state.game);
+  const { players = [], voteMessage, tally } = useSelector(
+    (state) => state.game
+  );
 
   const handleOnVote = (id) => socket.comm(MSG.GAME.VOTE, id);
 
@@ -32,20 +34,22 @@ const Room = () => {
     <Container fade grow padded>
       <Header>{voteMessage}</Header>
       <PlayerContainer>
-        {players.map(({ id, name, voted, isMostVoted, emoji, isDead }) => (
+        {players.map(({ id, name, voted, emoji, isDead, role }) => (
           <Player
             key={id}
             isCurrent={userID === id}
-            isMostVoted={isMostVoted}
+            isMostVoted={tally.includes(id)}
             isDead={isDead}
             emoji={emoji}
+            name={name}
+            role={role}
             onClick={() => handleOnVote(id)}
           >
-            {name}{' '}
             <LastVotes>
-              {voted.map(({ id, emoji }) => (
-                <span key={`voted-${id}`}>{emoji}</span>
-              ))}
+              {voted.map((id) => {
+                const { emoji } = players.find((player) => player.id === id);
+                return <span key={`voted-${id}`}>{emoji}</span>;
+              })}
             </LastVotes>
           </Player>
         ))}

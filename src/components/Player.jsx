@@ -2,6 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+const Texts = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const Role = styled.span`
+  font-size: 0.65em;
+  text-transform: uppercase;
+  opacity: 0.75;
+`;
+
+const Name = styled.span`
+  font-weight: bold;
+`;
+
 const StyledPlayer = styled.div`
   width: 100%;
   padding: 1em;
@@ -21,6 +38,10 @@ const StyledPlayer = styled.div`
   background-color: ${({ isDead, theme }) => isDead && theme.alpha[3]};
   opacity: ${({ isDead }) => isDead && '0.4'};
   order: ${({ isDead }) => isDead && '10'};
+
+  ${Name} {
+    text-decoration: ${({ isDead }) => isDead && 'line-through'};
+  }
 `;
 
 const Emoji = styled.span`
@@ -38,6 +59,7 @@ export const PlayerContainer = styled.div`
 
 const Player = ({
   name,
+  role,
   emoji,
   isMostVoted,
   isDead,
@@ -52,7 +74,11 @@ const Player = ({
     onClick={onClick}
   >
     <Emoji>{emoji}</Emoji>
-    {name} {children}
+    <Texts>
+      <Name>{name}</Name>
+      {role != null && <Role>{role || '???'}</Role>}
+    </Texts>
+    {children}
   </StyledPlayer>
 );
 
@@ -60,6 +86,7 @@ export default Player;
 
 Player.propTypes = {
   name: PropTypes.string,
+  role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   emoji: PropTypes.string,
   isMostVoted: PropTypes.bool,
   isDead: PropTypes.bool,

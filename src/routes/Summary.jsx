@@ -8,17 +8,22 @@ import Emoji from 'components/Emoji';
 import LoadingBar from 'components/LoadingBar';
 
 const Casualties = ({ killed }) => {
+  const { players } = useSelector((state) => state.game);
+
   if (!killed) return null;
   if (!killed.length) return null;
   return (
     <>
       <Space size="2em" />
       <h3>Total casualties:</h3>
-      {killed.map(({ id, name, emoji }) => (
-        <span key={`killed-${id}`}>
-          {emoji} {name}
-        </span>
-      ))}
+      {killed.map((id) => {
+        const { name, emoji } = players.find((player) => player.id === id);
+        return (
+          <span key={`killed-${id}`}>
+            {emoji} {name}
+          </span>
+        );
+      })}
     </>
   );
 };
@@ -28,7 +33,7 @@ Casualties.propTypes = {
 };
 
 const NightEnd = () => {
-  const { isKilled, killedList } = useSelector((state) => state.game);
+  const { isKilled, killed } = useSelector((state) => state.game);
 
   if (isKilled)
     return (
@@ -37,7 +42,7 @@ const NightEnd = () => {
         <h1>DEAD!</h1>
         <Space size="1em" />
         <Emoji emoji="💀" label="skull" size="5em" />
-        {killedList && <Casualties killed={killedList} />}
+        <Casualties killed={killed} />
       </Container>
     );
 
@@ -47,7 +52,7 @@ const NightEnd = () => {
       <h1>SAFE!</h1>
       <Space size="1em" />
       <Emoji emoji="😌" label="relieved face" size="5em" />
-      {killedList && <Casualties killed={killedList} />}
+      <Casualties killed={killed} />
       <LoadingBar />
     </Container>
   );

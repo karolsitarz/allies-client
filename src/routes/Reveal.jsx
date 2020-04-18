@@ -8,10 +8,10 @@ import ROLES from 'util/roles';
 import LoadingBar from 'components/LoadingBar';
 
 const Reveal = () => {
-  const { name: username, role, emoji: user_emoji } = useSelector(
-    (state) => state.game.reveal
-  );
-  const { name, emoji } = ROLES[role];
+  const { killed, players } = useSelector((state) => state.game);
+  const { role, name: username, emoji: user_emoji } =
+    players.find((player) => player.id === killed[0]) || {};
+  const { name, emoji } = ROLES[role] || {};
   return (
     <Container fade grow padded>
       <h2>
