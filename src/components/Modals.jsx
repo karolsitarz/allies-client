@@ -22,13 +22,13 @@ const StyledModal = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: ${({ theme }) => theme.base[1]};
+  background: ${({ theme }) => theme.base};
   text-align: center;
   max-width: 80vw;
   display: flex;
   flex-direction: column;
   border-radius: 1em;
-  box-shadow: 0 1em 2em #00000033;
+  box-shadow: ${({ theme }) => `0 1em 2em ${theme.alpha[3]}`};
   overflow: hidden;
   animation: ${modalFadeIn} 0.25s ease backwards;
 

@@ -47,6 +47,7 @@ const StyledPlayer = styled.div`
 
 const Emoji = styled.span`
   margin-right: 0.5em;
+  line-height: 1em;
 `;
 
 const Filler = styled.div`

@@ -1,33 +1,17 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import styled, { ThemeProvider } from 'styled-components';
 import ReactDOM from 'react-dom';
 
 import store from 'stores';
-import GlobalStyles, { theme } from './style';
-import App from 'routes';
+import App from 'App';
 // import * as serviceWorker from './serviceWorker';
 
-const Main = styled.main`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 600px;
-  margin: auto;
-`;
-
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyles />
+  <>
     <Provider store={store}>
-      <Main>
-        <App />
-      </Main>
+      <App />
     </Provider>
-  </ThemeProvider>,
+  </>,
   document.getElementById('container')
 );
 

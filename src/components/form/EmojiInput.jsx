@@ -23,6 +23,7 @@ const EmojiInputContainer = styled.label`
   span {
     pointer-events: none;
     font-size: 1.5em;
+    line-height: 1em;
   }
 `;
 

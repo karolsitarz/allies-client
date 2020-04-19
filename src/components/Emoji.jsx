@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const EmojiContainer = styled.span`
   font-size: ${({ size }) => size};
+  line-height: 1em;
 `;
 
 const Emoji = ({ label, emoji, size }) => (

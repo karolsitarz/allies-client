@@ -8,6 +8,7 @@ import Container from 'components/form/Container';
 import Space from 'components/form/Space';
 import Emoji from 'components/Emoji';
 import EmojiInput from 'components/form/EmojiInput';
+import ThemeToggle from 'components/ThemeToggle';
 
 const Login = () => {
   const [input, setInput] = useState('');
@@ -28,7 +29,7 @@ const Login = () => {
   };
 
   return (
-    <Container fade>
+    <Container fade grow>
       <h1>
         hi there! <Emoji emoji="👋" label="waving hand" />
       </h1>
@@ -41,6 +42,7 @@ const Login = () => {
           Jump in!
         </Button>
       </Container>
+      <ThemeToggle />
     </Container>
   );
 };

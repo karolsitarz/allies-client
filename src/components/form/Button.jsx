@@ -32,8 +32,8 @@ const StyledButton = styled.label`
   opacity: ${({ disabled }) => disabled && '0.5'};
   pointer-events: ${({ disabled }) => disabled && 'none'};
 
-  color: ${({ theme, primary }) => (primary ? theme.base[1] : theme.main[2])};
-  fill: ${({ theme, primary }) => (primary ? theme.base[1] : theme.main[2])};
+  color: ${({ theme, primary }) => (primary ? theme.base : theme.main[2])};
+  fill: ${({ theme, primary }) => (primary ? theme.base : theme.main[2])};
 
   & svg {
     height: 1em;

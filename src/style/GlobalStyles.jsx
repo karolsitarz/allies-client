@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import fonts from './fonts';
 
 export default createGlobalStyle`
-  ${fonts}
   *,
   ::after,
   ::before {
@@ -19,6 +17,10 @@ export default createGlobalStyle`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+  }
+  html {
+    background-color: ${({ theme }) => theme.base};
+    transition: background-color 0.1s ease;
   }
   html, body, #root {
     padding: 0;
