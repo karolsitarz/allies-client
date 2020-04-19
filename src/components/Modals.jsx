@@ -29,6 +29,7 @@ const StyledModal = styled.div`
   flex-direction: column;
   border-radius: 1em;
   box-shadow: ${({ theme }) => `0 1em 2em ${theme.alpha[3]}`};
+  color: ${({ theme }) => theme.main[1]};
   overflow: hidden;
   animation: ${modalFadeIn} 0.25s ease backwards;
 
