@@ -33,7 +33,7 @@ const Room = () => {
   };
 
   return (
-    <Container fade grow padded>
+    <Container>
       <Header>{voteMessage}</Header>
       <PlayerContainer>
         {players.map(({ id, name, voted, emoji, isDead, role }) => (

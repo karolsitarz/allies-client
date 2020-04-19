@@ -12,7 +12,7 @@ const Sleep = () => {
   const { isDead } = players.find((player) => player.id === userID);
 
   return (
-    <Container fade grow padded>
+    <Container>
       <h1>sleep tight!</h1>
       <h3>no peeking!</h3>
       {isDead && (

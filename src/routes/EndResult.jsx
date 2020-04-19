@@ -20,7 +20,7 @@ const EndResult = () => {
   const handleLeave = () => socket.comm(MSG.ROOM.LEAVE);
 
   return (
-    <Container fade grow padded>
+    <Container>
       <h1>GAME OVER</h1>
       <h2>{name}s won!</h2>
       <Space size="1em" />

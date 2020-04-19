@@ -9,6 +9,7 @@ import Space from 'components/Space';
 import Emoji from 'components/Emoji';
 import EmojiInput from 'components/EmojiInput';
 import ThemeToggle from 'components/ThemeToggle';
+import { StyledForm } from 'components/Container';
 
 const Login = () => {
   const [input, setInput] = useState('');
@@ -29,19 +30,19 @@ const Login = () => {
   };
 
   return (
-    <Container fade grow>
+    <Container>
       <h1>
         hi there! <Emoji emoji="👋" label="waving hand" />
       </h1>
       <h3>what&apos;s your name?</h3>
       <Space size="2em" />
       <EmojiInput value={emoji} onChange={(emoji) => setEmoji(emoji)} />
-      <Container as="form" onSubmit={handleOnSubmit}>
+      <StyledForm onSubmit={handleOnSubmit}>
         <Input placeholder="name" value={input} onChange={handleOnChange} />
         <Button primary type="submit">
           Jump in!
         </Button>
-      </Container>
+      </StyledForm>
       <ThemeToggle />
     </Container>
   );

@@ -13,7 +13,7 @@ const GameStart = () => {
   const { role } = players.find((player) => player.id === userID) || {};
   const { name, description, emoji } = ROLES[role] || {};
   return (
-    <Container fade grow padded>
+    <Container>
       <h2>your role is...</h2>
       <h1>{name}</h1>
       <Space size="1em" />

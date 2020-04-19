@@ -41,7 +41,7 @@ const NightEnd = () => {
 
   if (isKilled)
     return (
-      <Container fade grow padded>
+      <Container>
         <h2>You are...</h2>
         <h1>DEAD!</h1>
         <Space size="1em" />
@@ -53,7 +53,7 @@ const NightEnd = () => {
 
   if (isDead)
     return (
-      <Container fade grow padded>
+      <Container>
         <h2>you are...</h2>
         <h1>DEAD!</h1>
         <i>...well, yeah. we&apos;ve already estabilished that.</i>
@@ -65,7 +65,7 @@ const NightEnd = () => {
     );
 
   return (
-    <Container fade grow padded>
+    <Container>
       <h2>You are...</h2>
       <h1>SAFE!</h1>
       <Space size="1em" />

@@ -6,6 +6,8 @@ import Container from 'components/Container';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import Space from 'components/Space';
+import ThemeToggle from 'components/ThemeToggle';
+import { StyledForm } from 'components/Container';
 
 const ALLOWED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -31,10 +33,10 @@ const Main = () => {
   };
 
   return (
-    <Container fade>
+    <Container>
       <h2>join a room:</h2>
       <Space size="1em" />
-      <Container as="form" onSubmit={handleOnJoin}>
+      <StyledForm onSubmit={handleOnJoin}>
         <Input
           placeholder="room code"
           value={input}
@@ -43,9 +45,10 @@ const Main = () => {
         <Button primary type="submit">
           Join
         </Button>
-      </Container>
+      </StyledForm>
       <Space size="2em" />
       <Button onClick={handleOnCreate}>...or create a new one</Button>
+      <ThemeToggle />
     </Container>
   );
 };

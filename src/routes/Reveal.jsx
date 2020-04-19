@@ -11,7 +11,7 @@ const Reveal = () => {
   const { killed, players } = useSelector((state) => state.game);
   if (!killed.length)
     return (
-      <Container fade grow padded>
+      <Container>
         <h2>no one died...</h2>
         <p>but soon someone is probably going to</p>
         <Space size="1em" />
@@ -24,7 +24,7 @@ const Reveal = () => {
     players.find((player) => player.id === killed[0]) || {};
   const { name, emoji } = ROLES[role] || {};
   return (
-    <Container fade grow padded>
+    <Container>
       <h2>
         {user_emoji} {username} was...
       </h2>

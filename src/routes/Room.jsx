@@ -41,7 +41,7 @@ const Room = () => {
   const handleReady = () => socket.comm(MSG.ROOM.READY);
 
   return (
-    <Container fade grow padded>
+    <Container>
       <TopContainer>
         <h2>
           room <span onClick={onIdClick}>{id}</span>
