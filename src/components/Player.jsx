@@ -48,6 +48,16 @@ const StyledPlayer = styled.div`
 const Emoji = styled.span`
   margin-right: 0.5em;
   line-height: 1em;
+
+  &::before {
+    content: ${({ isHost }) => isHost && '"👑"'};
+    position: absolute;
+    font-size: 0.5em;
+    top: 0;
+    left: 0;
+    line-height: 0em;
+    transform: rotate(-30deg);
+  }
 `;
 
 const Filler = styled.div`
@@ -70,6 +80,7 @@ const Player = ({
   isMostVoted,
   isDead,
   isCurrent,
+  isHost,
   children,
   onClick,
 }) => (
@@ -79,7 +90,7 @@ const Player = ({
     isCurrent={isCurrent}
     onClick={onClick}
   >
-    <Emoji>{emoji}</Emoji>
+    <Emoji isHost={isHost}>{emoji}</Emoji>
     <Texts>
       <Name>{name}</Name>
       {role != null && <Role>{role || '???'}</Role>}
@@ -98,6 +109,7 @@ Player.propTypes = {
   isMostVoted: PropTypes.bool,
   isDead: PropTypes.bool,
   isCurrent: PropTypes.bool,
+  isHost: PropTypes.bool,
   children: PropTypes.node,
   onClick: PropTypes.func,
 };

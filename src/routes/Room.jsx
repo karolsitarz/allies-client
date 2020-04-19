@@ -50,17 +50,21 @@ const Room = () => {
       </TopContainer>
       <Space size="1em" />
       <PlayerContainer>
-        {players.map((player) => (
-          <Player key={player.id} isCurrent={userID === player.id} {...player}>
-            {userID === player.id ? (
-              <Button compact onClick={handleReady}>
-                {player.isReady ? 'not ready' : 'ready'}
-              </Button>
-            ) : (
-              player.isReady && '✅'
-            )}
-          </Player>
-        ))}
+        {players.map((player) => {
+          const { id, isReady } = player;
+          const isCurrent = userID === id;
+          return (
+            <Player key={id} isCurrent={isCurrent} {...player}>
+              {isCurrent ? (
+                <Button compact onClick={handleReady}>
+                  {isReady ? 'not ready' : 'ready'}
+                </Button>
+              ) : (
+                isReady && '✅'
+              )}
+            </Player>
+          );
+        })}
       </PlayerContainer>
       {isHost && (
         <>
