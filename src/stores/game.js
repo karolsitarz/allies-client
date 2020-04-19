@@ -1,5 +1,5 @@
 import MSG from 'util/msg';
-const { GAME } = MSG;
+const { GAME, ROOM } = MSG;
 
 const INITIAL_STATE = {
   players: [],
@@ -8,14 +8,17 @@ const INITIAL_STATE = {
   tally: [],
   isKilled: false,
   killed: [],
-  gameEnd: null,
+  endResult: null,
 };
 
 export const gameReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case ROOM.JOIN:
+      return INITIAL_STATE;
+
     case GAME.START: {
       const players = action.data;
-      return { ...state, players };
+      return { ...INITIAL_STATE, players };
     }
 
     case GAME.SLEEP: {
@@ -58,7 +61,7 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
     }
 
     case GAME.END: {
-      return { ...state, gameEnd: action.data };
+      return { ...state, endResult: action.data };
     }
 
     default:

@@ -10,7 +10,7 @@ import GameStart from './GameStart';
 import Vote from './Vote';
 import Summary from './Summary';
 import Reveal from './Reveal';
-import GameEnd from './GameEnd';
+import EndResult from './EndResult';
 import Modals from 'components/Modals';
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
       <Route to={Vote} from={ROUTES.GAME.VOTE} />
       <Route to={Summary} from={ROUTES.GAME.SUMMARY} />
       <Route to={Reveal} from={ROUTES.GAME.REVEAL} />
-      <Route to={GameEnd} from={ROUTES.GAME.END} />
+      <Route to={EndResult} from={ROUTES.GAME.END} />
       <Modals />
     </>
   );
