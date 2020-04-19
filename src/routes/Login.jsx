@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 import MSG from 'util/msg';
 import useSocket from 'hooks/useSocket';
-import Input from 'components/form/Input';
-import Button from 'components/form/Button';
-import Container from 'components/form/Container';
-import Space from 'components/form/Space';
+import Input from 'components/Input';
+import Button from 'components/Button';
+import Container from 'components/Container';
+import Space from 'components/Space';
 import Emoji from 'components/Emoji';
-import EmojiInput from 'components/form/EmojiInput';
+import EmojiInput from 'components/EmojiInput';
 import ThemeToggle from 'components/ThemeToggle';
 
 const Login = () => {

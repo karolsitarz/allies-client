@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import MSG from 'util/msg';
 import useSocket from 'hooks/useSocket';
-import Container from 'components/form/Container';
-import Space from 'components/form/Space';
+import Container from 'components/Container';
+import Space from 'components/Space';
 import Emoji from 'components/Emoji';
 import ROLES from 'util/roles';
-import Button from 'components/form/Button';
+import Button from 'components/Button';
 import { setRoute, ROUTES } from 'stores/route';
 
 const EndResult = () => {

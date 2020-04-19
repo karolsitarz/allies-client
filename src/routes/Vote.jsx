@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import MSG from 'util/msg';
 import useSocket from 'hooks/useSocket';
-import Container from 'components/form/Container';
+import Container from 'components/Container';
 import { PlayerContainer } from 'components/Player';
 import Player from 'components/Player';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Container from 'components/form/Container';
-import Space from 'components/form/Space';
+import Container from 'components/Container';
+import Space from 'components/Space';
 import Emoji from 'components/Emoji';
 import LoadingBar from 'components/LoadingBar';
 

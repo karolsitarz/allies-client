@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 
 import MSG from 'util/msg';
 import useSocket from 'hooks/useSocket';
-import Container from 'components/form/Container';
-import Button from 'components/form/Button';
-import Space from 'components/form/Space';
+import Container from 'components/Container';
+import Button from 'components/Button';
+import Space from 'components/Space';
 import { PlayerContainer } from 'components/Player';
 import Player from 'components/Player';
 

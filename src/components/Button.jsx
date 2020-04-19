@@ -23,7 +23,6 @@ const StyledButton = styled.label`
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  margin: 0.5em 0;
   background-size: cover;
   background-position: center;
   background-color: ${({ theme }) => theme.alpha[1]};

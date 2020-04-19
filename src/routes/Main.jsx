@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import MSG from 'util/msg';
 import useSocket from 'hooks/useSocket';
-import Container from 'components/form/Container';
-import Button from 'components/form/Button';
-import Input from 'components/form/Input';
-import Space from 'components/form/Space';
+import Container from 'components/Container';
+import Button from 'components/Button';
+import Input from 'components/Input';
+import Space from 'components/Space';
 
 const ALLOWED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -32,7 +32,7 @@ const Main = () => {
 
   return (
     <Container fade>
-      <h1>join a room:</h1>
+      <h2>join a room:</h2>
       <Space size="1em" />
       <Container as="form" onSubmit={handleOnJoin}>
         <Input
