@@ -9,6 +9,17 @@ import LoadingBar from 'components/LoadingBar';
 
 const Reveal = () => {
   const { killed, players } = useSelector((state) => state.game);
+  if (!killed.length)
+    return (
+      <Container fade grow padded>
+        <h2>no one died...</h2>
+        <p>but soon someone is probably going to</p>
+        <Space size="1em" />
+        <Emoji emoji="🤷" label="person shrugging" size="5em" />
+        <LoadingBar />
+      </Container>
+    );
+
   const { role, name: username, emoji: user_emoji } =
     players.find((player) => player.id === killed[0]) || {};
   const { name, emoji } = ROLES[role] || {};
@@ -20,7 +31,7 @@ const Reveal = () => {
       <h1>{name}</h1>
       <Space size="1em" />
       <Emoji {...emoji} size="5em" />
-      <LoadingBar time={7500} />
+      <LoadingBar />
     </Container>
   );
 };

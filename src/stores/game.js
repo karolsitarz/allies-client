@@ -52,6 +52,10 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
 
     case GAME.REVEAL: {
       const { id, role } = action.data;
+      if (!id) {
+        return { ...state, killed: [] };
+      }
+
       const players = state.players.map((player) => ({
         ...player,
         role: player.role || (player.id === id && role),
