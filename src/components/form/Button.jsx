@@ -5,8 +5,12 @@ import PropTypes from 'prop-types';
 const StyledButton = styled.label`
   border-radius: 5em;
   overflow: hidden;
-  padding: ${({ $content }) =>
-    typeof $content === 'string' ? '0.75em 2.7em 0.75em 3em' : '1em 1.5em'};
+  padding: ${({ $content, compact }) =>
+    typeof $content === 'string'
+      ? compact
+        ? '0.75em 0.7em 0.75em 1em'
+        : '0.75em 2.7em 0.75em 3em'
+      : '1em 1.5em'};
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.65em;
@@ -43,9 +47,14 @@ const HiddenButton = styled.button`
   pointer-events: none;
 `;
 
-const Button = ({ onClick, primary, children, type, disabled }) => {
+const Button = ({ onClick, primary, children, type, disabled, compact }) => {
   return (
-    <StyledButton primary={primary} $content={children} disabled={disabled}>
+    <StyledButton
+      compact={compact}
+      primary={primary}
+      $content={children}
+      disabled={disabled}
+    >
       {children}
       <HiddenButton onClick={onClick} type={type} />
     </StyledButton>
@@ -58,6 +67,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   primary: PropTypes.bool,
   disabled: PropTypes.bool,
+  compact: PropTypes.bool,
   children: PropTypes.node,
   type: PropTypes.oneOf(['submit', 'reset', 'button']),
 };

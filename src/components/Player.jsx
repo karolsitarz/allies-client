@@ -17,6 +17,7 @@ const Role = styled.span`
 
 const Name = styled.span`
   font-weight: bold;
+  text-align: left;
 `;
 
 const StyledPlayer = styled.div`
@@ -46,6 +47,10 @@ const StyledPlayer = styled.div`
 
 const Emoji = styled.span`
   margin-right: 0.5em;
+`;
+
+const Filler = styled.div`
+  flex-grow: 1;
 `;
 
 export const PlayerContainer = styled.div`
@@ -78,6 +83,7 @@ const Player = ({
       <Name>{name}</Name>
       {role != null && <Role>{role || '???'}</Role>}
     </Texts>
+    <Filler />
     {children}
   </StyledPlayer>
 );

@@ -26,7 +26,8 @@ const Room = () => {
   const handleLeave = () => socket.comm(MSG.ROOM.LEAVE);
   const handleStart = () => socket.comm(MSG.GAME.START);
   const isHost = players.find(({ isHost, id }) => isHost && id === userID);
-  const canStartGame = players.length >= 4;
+  const isEveryoneReady = !players.find(({ isReady }) => !isReady);
+  const canStartGame = players.length >= 4 && isEveryoneReady;
 
   const onIdClick = () => {
     const el = document.createElement('textarea');
@@ -36,6 +37,8 @@ const Room = () => {
     document.execCommand('copy');
     document.body.removeChild(el);
   };
+
+  const handleReady = () => socket.comm(MSG.ROOM.READY);
 
   return (
     <Container fade grow padded>
@@ -48,11 +51,15 @@ const Room = () => {
       <Space size="1em" />
       <PlayerContainer>
         {players.map((player) => (
-          <Player
-            key={player.id}
-            isCurrent={userID === player.id}
-            {...player}
-          />
+          <Player key={player.id} isCurrent={userID === player.id} {...player}>
+            {userID === player.id ? (
+              <Button compact onClick={handleReady}>
+                {player.isReady ? 'not ready' : 'ready'}
+              </Button>
+            ) : (
+              player.isReady && '✅'
+            )}
+          </Player>
         ))}
       </PlayerContainer>
       {isHost && (

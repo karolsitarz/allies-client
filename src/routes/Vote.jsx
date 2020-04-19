@@ -15,9 +15,8 @@ const Header = styled.h2`
 const LastVotes = styled.div`
   display: flex;
   flex-direction: row-reverse;
-  margin-left: auto;
   > span {
-    margin-left: -0.75em;
+    margin-left: -0.5em;
   }
 `;
 
