@@ -41,7 +41,7 @@ const Room = () => {
     <Container fade grow padded>
       <TopContainer>
         <h2>
-          Room <span onClick={onIdClick}>{id}</span>
+          room <span onClick={onIdClick}>{id}</span>
         </h2>
         <Button onClick={handleLeave}>exit</Button>
       </TopContainer>

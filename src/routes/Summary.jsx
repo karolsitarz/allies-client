@@ -54,9 +54,9 @@ const NightEnd = () => {
   if (isDead)
     return (
       <Container fade grow padded>
-        <h2>You are...</h2>
+        <h2>you are...</h2>
         <h1>DEAD!</h1>
-        <i>...well, yeah. We&apos;ve already estabilished that.</i>
+        <i>...well, yeah. we&apos;ve already estabilished that.</i>
         <Space size="1em" />
         <Emoji emoji="💀" label="skull" size="5em" />
         <Casualties killed={killed} />

@@ -32,7 +32,7 @@ const Main = () => {
 
   return (
     <Container fade>
-      <h1>Join a room:</h1>
+      <h1>join a room:</h1>
       <Space size="1em" />
       <Container as="form" onSubmit={handleOnJoin}>
         <Input

@@ -30,9 +30,9 @@ const Login = () => {
   return (
     <Container fade>
       <h1>
-        Hi there! <Emoji emoji="👋" label="waving hand" />
+        hi there! <Emoji emoji="👋" label="waving hand" />
       </h1>
-      <h3>What&apos;s your name?</h3>
+      <h3>what&apos;s your name?</h3>
       <Space size="2em" />
       <EmojiInput value={emoji} onChange={(emoji) => setEmoji(emoji)} />
       <Container as="form" onSubmit={handleOnSubmit}>
