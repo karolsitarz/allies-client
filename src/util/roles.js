@@ -1,15 +1,23 @@
 const ROLES = {
   mafia: {
     name: 'mafia',
-    description: 'you want to get rid of every citizen.',
+    description: 'you get rid of citizens',
     emoji: {
       emoji: '🔫',
-      label: 'a squirt gun',
+      label: 'squirt gun',
+    },
+  },
+  doctor: {
+    name: 'doctor',
+    description: 'you heal wounded citizens',
+    emoji: {
+      emoji: '💉',
+      label: 'syringe',
     },
   },
   citizen: {
     name: 'citizen',
-    description: 'you want to vote mafia out of the town.',
+    description: 'you vote mafia out of the town',
     emoji: {
       emoji: '👥',
       label: 'silhouettes of people',
