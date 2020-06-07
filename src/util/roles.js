@@ -1,6 +1,6 @@
 const ROLES = {
-  mafia: {
-    name: 'mafia',
+  killer: {
+    name: 'killer',
     description: 'you get rid of citizens',
     emoji: {
       emoji: '🔫',
@@ -17,7 +17,7 @@ const ROLES = {
   },
   cop: {
     name: 'cop',
-    description: 'you check whether someone is mafia',
+    description: 'you check whether someone is a killer',
     emoji: {
       emoji: '🔎',
       label: 'magnifying glass',
@@ -25,15 +25,15 @@ const ROLES = {
   },
   citizen: {
     name: 'citizen',
-    description: 'you vote mafia out of the town',
+    description: 'you vote killers out of the town',
     emoji: {
       emoji: '👥',
       label: 'silhouettes of people',
     },
   },
-  not_mafia: {
-    name: 'not mafia',
-    description: 'this player is not mafia',
+  not_killer: {
+    name: 'not killer',
+    description: 'this player is not a killer',
     emoji: {
       emoji: '🙈',
       label: 'see no evil monkey',

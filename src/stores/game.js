@@ -57,12 +57,12 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
         return { ...state, killed: [] };
       }
 
-      // when cop checks non-mafia
+      // when cop checks non-killer
       if (!role) {
         return { ...state, killed: [id] };
       }
 
-      // when cop checks mafia / someone is killed during the day
+      // when cop checks killer / someone is killed during the day
       const players = state.players.map((player) =>
         player.id === id ? { ...player, role, isDead } : player
       );
