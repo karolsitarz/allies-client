@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
@@ -9,6 +9,7 @@ import Button from 'components/Button';
 import Space from 'components/Space';
 import { PlayerContainer } from 'components/Player';
 import Player from 'components/Player';
+import { isDebug } from 'util/debug';
 
 const TopContainer = styled.div`
   display: flex;
@@ -28,6 +29,8 @@ const Room = () => {
   const isHost = players.find(({ isHost, id }) => isHost && id === userID);
   const isEveryoneReady = !players.find(({ isReady }) => !isReady);
   const canStartGame = players.length >= 4 && isEveryoneReady;
+
+  useEffect(() => isDebug && socket.comm(MSG.ROOM.READY), [socket]);
 
   const onIdClick = () => {
     const el = document.createElement('textarea');

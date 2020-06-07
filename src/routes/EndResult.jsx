@@ -29,6 +29,7 @@ const EndResult = () => {
       <Button onClick={handleBack} primary>
         Go back
       </Button>
+      <Space size="0.5em" />
       <Button onClick={handleLeave}>Leave</Button>
     </Container>
   );

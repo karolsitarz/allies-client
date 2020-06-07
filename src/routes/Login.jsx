@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import MSG from 'util/msg';
 import useSocket from 'hooks/useSocket';
@@ -11,10 +11,20 @@ import EmojiInput from 'components/EmojiInput';
 import ThemeToggle from 'components/ThemeToggle';
 import { StyledForm } from 'components/Container';
 
+const DEFAULT_EMOJI = '😀';
+const DEFAULT_NAME = '';
+
 const Login = () => {
-  const [input, setInput] = useState('');
-  const [emoji, setEmoji] = useState('😀');
+  const [input, setInput] = useState(DEFAULT_NAME);
+  const [emoji, setEmoji] = useState(DEFAULT_EMOJI);
   const [, openSocket] = useSocket();
+
+  useEffect(() => {
+    const name = localStorage.getItem('name') || DEFAULT_NAME;
+    const emoji = localStorage.getItem('emoji') || DEFAULT_EMOJI;
+    setInput(name);
+    setEmoji(emoji);
+  }, []);
 
   const handleOnChange = (e) => {
     if (!e || !e.target) return;
@@ -27,6 +37,8 @@ const Login = () => {
     if (!input.length) return;
     const socket = await openSocket();
     socket.comm(MSG.LOGIN.PROMPT, { name: input, emoji });
+    localStorage.setItem('name', input);
+    localStorage.setItem('emoji', emoji);
   };
 
   return (
