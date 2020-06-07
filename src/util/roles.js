@@ -31,6 +31,14 @@ const ROLES = {
       label: 'silhouettes of people',
     },
   },
+  not_mafia: {
+    name: 'not mafia',
+    description: 'this player is not mafia',
+    emoji: {
+      emoji: '🙈',
+      label: 'see no evil monkey',
+    },
+  },
 };
 
 export default ROLES;

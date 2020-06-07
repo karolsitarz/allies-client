@@ -22,7 +22,8 @@ const Reveal = () => {
 
   const { role, name: username, emoji: user_emoji, isDead } =
     players.find((player) => player.id === killed[0]) || {};
-  const { name, emoji } = ROLES[role] || {};
+
+  const { name, emoji } = role ? ROLES[role] : ROLES.not_mafia;
   return (
     <Container>
       <h2>
