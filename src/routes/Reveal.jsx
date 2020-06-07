@@ -20,13 +20,13 @@ const Reveal = () => {
       </Container>
     );
 
-  const { role, name: username, emoji: user_emoji } =
+  const { role, name: username, emoji: user_emoji, isDead } =
     players.find((player) => player.id === killed[0]) || {};
   const { name, emoji } = ROLES[role] || {};
   return (
     <Container>
       <h2>
-        {user_emoji} {username} was...
+        {user_emoji} {username} {isDead ? 'was' : 'is'}...
       </h2>
       <h1>{name}</h1>
       <Space size="1em" />

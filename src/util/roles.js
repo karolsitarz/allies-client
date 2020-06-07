@@ -15,6 +15,14 @@ const ROLES = {
       label: 'syringe',
     },
   },
+  cop: {
+    name: 'cop',
+    description: 'you check whether someone is mafia',
+    emoji: {
+      emoji: '🔎',
+      label: 'magnifying glass',
+    },
+  },
   citizen: {
     name: 'citizen',
     description: 'you vote mafia out of the town',
