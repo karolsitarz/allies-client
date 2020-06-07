@@ -33,9 +33,9 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
 
     case GAME.VOTE: {
       const { isVoteValid, voted, tally } = action.data;
-      const players = state.players.map((player, i) => ({
+      const players = state.players.map((player) => ({
         ...player,
-        voted: voted[i],
+        voted: voted[player.id] || [],
       }));
       return { ...state, players, isVoteValid, tally };
     }
