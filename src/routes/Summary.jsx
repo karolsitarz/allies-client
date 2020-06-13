@@ -15,7 +15,7 @@ const Casualties = ({ killed }) => {
   return (
     <>
       <Space size="2em" />
-      <h3>Total casualties:</h3>
+      <h3>total casualties:</h3>
       {killed.map((id) => {
         const { name, emoji } = players.find((player) => player.id === id);
         return (
@@ -42,7 +42,7 @@ const NightEnd = () => {
   if (isKilled)
     return (
       <Container>
-        <h2>You are...</h2>
+        <h2>you are</h2>
         <h1>DEAD!</h1>
         <Space size="1em" />
         <Emoji emoji="💀" label="skull" size="5em" />
@@ -54,11 +54,7 @@ const NightEnd = () => {
   if (isDead)
     return (
       <Container>
-        <h2>you are...</h2>
-        <h1>DEAD!</h1>
-        <i>...well, yeah. we&apos;ve already estabilished that.</i>
-        <Space size="1em" />
-        <Emoji emoji="💀" label="skull" size="5em" />
+        <Emoji emoji="👻" label="ghost" size="5em" />
         <Casualties killed={killed} />
         <LoadingBar />
       </Container>
@@ -66,7 +62,7 @@ const NightEnd = () => {
 
   return (
     <Container>
-      <h2>You are...</h2>
+      <h2>you are</h2>
       <h1>SAFE!</h1>
       <Space size="1em" />
       <Emoji emoji="😌" label="relieved face" size="5em" />

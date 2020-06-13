@@ -14,7 +14,7 @@ const GameStart = () => {
   const { name, description, emoji } = ROLES[role] || {};
   return (
     <Container>
-      <h2>your role is...</h2>
+      <h2>your role is</h2>
       <h1>{name}</h1>
       <Space size="1em" />
       <Emoji {...emoji} size="5em" />

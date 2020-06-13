@@ -1,6 +1,6 @@
 const ROLES = {
   killer: {
-    name: 'killer',
+    name: 'a killer',
     description: 'you get rid of citizens',
     emoji: {
       emoji: '🔫',
@@ -8,7 +8,7 @@ const ROLES = {
     },
   },
   doctor: {
-    name: 'doctor',
+    name: 'a doctor',
     description: 'you heal wounded citizens',
     emoji: {
       emoji: '💉',
@@ -16,7 +16,7 @@ const ROLES = {
     },
   },
   cop: {
-    name: 'cop',
+    name: 'a cop',
     description: 'you check whether someone is a killer',
     emoji: {
       emoji: '🔎',
@@ -24,19 +24,11 @@ const ROLES = {
     },
   },
   citizen: {
-    name: 'citizen',
+    name: 'a citizen',
     description: 'you vote killers out of the town',
     emoji: {
       emoji: '👥',
       label: 'silhouettes of people',
-    },
-  },
-  not_killer: {
-    name: 'not killer',
-    description: 'this player is not a killer',
-    emoji: {
-      emoji: '🙈',
-      label: 'see no evil monkey',
     },
   },
 };

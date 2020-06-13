@@ -21,7 +21,7 @@ const Sleep = () => {
 
   return (
     <Container>
-      <h1>sleep tight!</h1>
+      <h1>sleep tight</h1>
       <h3>no peeking!</h3>
       <Space size="1em" />
       <Emoji emoji="👁‍🗨" label="eye in a bubble" size="5em" />
