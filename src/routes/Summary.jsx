@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Container from 'components/Container';
 import Space from 'components/Space';
 import Emoji from 'components/Emoji';
-import LoadingBar from 'components/LoadingBar';
 
 const Casualties = ({ killed }) => {
   const { players } = useSelector((state) => state.game);
@@ -47,7 +46,6 @@ const NightEnd = () => {
         <Space size="1em" />
         <Emoji emoji="💀" label="skull" size="5em" />
         {killed.length > 1 && <Casualties killed={killed} />}
-        <LoadingBar />
       </Container>
     );
 
@@ -56,7 +54,6 @@ const NightEnd = () => {
       <Container>
         <Emoji emoji="👻" label="ghost" size="5em" />
         <Casualties killed={killed} />
-        <LoadingBar />
       </Container>
     );
 
@@ -67,7 +64,6 @@ const NightEnd = () => {
       <Space size="1em" />
       <Emoji emoji="😌" label="relieved face" size="5em" />
       <Casualties killed={killed} />
-      <LoadingBar />
     </Container>
   );
 };

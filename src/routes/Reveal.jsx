@@ -5,7 +5,6 @@ import Container from 'components/Container';
 import Space from 'components/Space';
 import Emoji from 'components/Emoji';
 import ROLES from 'util/roles';
-import LoadingBar from 'components/LoadingBar';
 
 const NOT_KILLER = {
   name: 'not a killer',
@@ -23,7 +22,6 @@ const Reveal = () => {
         <h2>no one died</h2>
         <Space size="1em" />
         <Emoji emoji="🤷" label="person shrugging" size="5em" />
-        <LoadingBar />
       </Container>
     );
 
@@ -39,7 +37,6 @@ const Reveal = () => {
       <h1>{name}</h1>
       <Space size="1em" />
       <Emoji {...emoji} size="5em" />
-      <LoadingBar />
     </Container>
   );
 };
