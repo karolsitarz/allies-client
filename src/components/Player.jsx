@@ -39,6 +39,7 @@ const StyledPlayer = styled.div`
 
   margin-bottom: ${({ isCurrent }) => isCurrent && '1.5em'};
   order: ${({ isCurrent }) => isCurrent && '-1'};
+  order: ${({ skip }) => skip && '-2'};
 
   ${Name} {
     text-decoration: ${({ isDead }) => isDead && 'line-through'};
@@ -112,4 +113,21 @@ Player.propTypes = {
   isHost: PropTypes.bool,
   children: PropTypes.node,
   onClick: PropTypes.func,
+};
+
+export const Skip = ({ isMostVoted, onClick, children }) => (
+  <StyledPlayer isMostVoted={isMostVoted} onClick={onClick} skip>
+    <Emoji>⏭️</Emoji>
+    <Texts>
+      <Name>skip</Name>
+    </Texts>
+    <Filler />
+    {children}
+  </StyledPlayer>
+);
+
+Skip.propTypes = {
+  isMostVoted: PropTypes.bool,
+  onClick: PropTypes.func,
+  children: PropTypes.node,
 };

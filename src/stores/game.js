@@ -1,10 +1,14 @@
 import MSG from 'util/msg';
 const { GAME, ROOM } = MSG;
 
+const SKIP = 'SKIP';
+
 const INITIAL_STATE = {
   players: [],
   isVoteValid: false,
   voteMessage: '',
+  canSkipVote: false,
+  skipVotes: [],
   tally: [],
   isKilled: false,
   killed: [],
@@ -27,8 +31,8 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
     }
 
     case GAME.WAKE: {
-      const message = action.data;
-      return { ...state, voteMessage: message };
+      const { message, canSkipVote } = action.data;
+      return { ...state, voteMessage: message, canSkipVote };
     }
 
     case GAME.VOTE: {
@@ -37,7 +41,8 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
         ...player,
         voted: voted[player.id] || [],
       }));
-      return { ...state, players, isVoteValid, tally };
+      const skipVotes = voted[SKIP] || [];
+      return { ...state, players, isVoteValid, tally, skipVotes };
     }
 
     case GAME.SUMMARY: {

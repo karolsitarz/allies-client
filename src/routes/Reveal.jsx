@@ -34,7 +34,7 @@ const Reveal = () => {
   return (
     <Container>
       <h2>
-        {user_emoji} {username} {isDead ? 'was' : 'is'}
+        {user_emoji} {username}&apos;s role {isDead ? 'was' : 'is'}
       </h2>
       <h1>{name}</h1>
       <Space size="1em" />
