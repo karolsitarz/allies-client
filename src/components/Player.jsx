@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+const SKIP_EMOJI = '⏭️';
+
 const Texts = styled.div`
   display: flex;
   flex-direction: column;
@@ -117,7 +119,7 @@ Player.propTypes = {
 
 export const Skip = ({ isMostVoted, onClick, children }) => (
   <StyledPlayer isMostVoted={isMostVoted} onClick={onClick} skip>
-    <Emoji>⏭️</Emoji>
+    <Emoji>{SKIP_EMOJI}</Emoji>
     <Texts>
       <Name>skip</Name>
     </Texts>
