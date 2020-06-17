@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import ROLES from 'util/roles';
 
 const SKIP_EMOJI = '⏭️';
 
@@ -96,7 +97,7 @@ const Player = ({
     <Emoji isHost={isHost}>{emoji}</Emoji>
     <Texts>
       <Name>{name}</Name>
-      {role != null && <Role>{role || '???'}</Role>}
+      {role != null && <Role>{role ? ROLES[role].name : '???'}</Role>}
     </Texts>
     <Filler />
     {children}

@@ -63,6 +63,13 @@ const ROLES = {
       label: 'dartboard',
     },
   },
+  not_killer: {
+    name: 'not killer',
+    emoji: {
+      emoji: '🙈',
+      label: 'see no evil monkey',
+    },
+  },
 };
 
 export default ROLES;

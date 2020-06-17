@@ -6,11 +6,11 @@ import Space from 'components/Space';
 import Emoji from 'components/Emoji';
 import ROLES from 'util/roles';
 
-const NOT_KILLER = {
-  name: 'not a killer',
+const BLOCKED = {
+  name: '???',
   emoji: {
-    emoji: '🙈',
-    label: 'see no evil monkey',
+    emoji: '🤷',
+    label: 'person shrugging',
   },
 };
 
@@ -28,7 +28,7 @@ const Reveal = () => {
   const { role, name: username, emoji: user_emoji, isDead } =
     players.find((player) => player.id === killed[0]) || {};
 
-  const { name, emoji } = role ? ROLES[role] : NOT_KILLER;
+  const { name, emoji } = role ? ROLES[role] : BLOCKED;
   return (
     <Container>
       <h2>

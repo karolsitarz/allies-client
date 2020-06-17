@@ -49,7 +49,7 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
       const { isKilled, killed, players: players_roles } = action.data;
       const players = state.players.map((player) => ({
         ...player,
-        role: player.role || (isKilled && players_roles[player.id]),
+        role: (isKilled && players_roles[player.id]) || player.role,
         isDead: player.isDead || killed.includes(player.id),
       }));
       return { ...state, players, isKilled, killed };
@@ -62,9 +62,12 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
         return { ...state, killed: [] };
       }
 
-      // when cop checks non-killer
+      // when cop was blocked
       if (!role) {
-        return { ...state, killed: [id] };
+        const players = state.players.map((player) =>
+          player.id === id ? { ...player, role } : player
+        );
+        return { ...state, killed: [id], players };
       }
 
       // when cop checks killer / someone is killed during the day
