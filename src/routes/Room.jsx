@@ -10,6 +10,7 @@ import Space from 'components/Space';
 import { PlayerContainer } from 'components/Player';
 import Player from 'components/Player';
 import { isDebug } from 'util/debug';
+import play, { WAKE } from 'util/audio';
 
 const TopContainer = styled.div`
   display: flex;
@@ -75,6 +76,7 @@ const Room = () => {
           <Button primary disabled={!canStartGame} onClick={handleStart}>
             Start
           </Button>
+          <Button onClick={() => play(WAKE)}>play</Button>
         </>
       )}
     </Container>

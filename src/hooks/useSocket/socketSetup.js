@@ -1,4 +1,6 @@
 import { debugLog } from 'util/debug';
+import msg from 'util/msg';
+import { playWake, playSleep } from 'util/audio';
 
 const COLOR_GREEN = '#2C7C26';
 const COLOR_RED = '#C11B1B';
@@ -49,6 +51,14 @@ export default (socket, dispatch) => {
 
     const { message, data } = parsed;
     debugLog(`\t← ${message}`, COLOR_RED, data);
+
+    if (message === msg.SOUND_WAKE) {
+      return playWake(data);
+    }
+    if (message === msg.SOUND_SLEEP) {
+      return playSleep(data);
+    }
+
     dispatch({
       type: message,
       data,
