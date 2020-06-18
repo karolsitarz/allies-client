@@ -49,9 +49,6 @@ export const routeReducer = (state = INITIAL_STATE, action) => {
     case ROOM.SETTINGS.CLOSE:
       return ROUTES.ROOM.LOBBY;
 
-    case ROOM.SETTINGS.RECEIVE:
-      return ROUTES.ROOM.LOBBY;
-
     case GAME.START:
       return ROUTES.GAME.START;
 

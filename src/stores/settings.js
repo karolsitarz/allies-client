@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 
 export const settingsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ROOM.JOIN:
+    case ROOM.LEAVE:
       return INITIAL_STATE;
 
     case ROOM.SETTINGS.RECEIVE: {

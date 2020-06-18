@@ -26,7 +26,8 @@ const RoleSettingsContainer = styled.div`
 const GameSettings = () => {
   const [socket] = useSocket();
   const dispatch = useDispatch();
-  const playersCount = useSelector((state) => state.room.players.length);
+  const players = useSelector((state) => state.room.players);
+  const playersCount = players.length < 4 ? 4 : players.length;
   const savedSettings = useSelector((state) => state.settings);
   const [auto, setAuto] = useState(savedSettings.auto);
 
@@ -53,6 +54,12 @@ const GameSettings = () => {
     );
 
   const min = Object.values(settings).reduce((acc, val) => acc + val, 0);
+
+  const areSettingsDifferent =
+    savedSettings.auto !== auto ||
+    !!['killer', 'doctor', 'cop', 'nitwit', 'cabby', 'sniper'].find(
+      (role) => settings[role] !== savedSettings[role]
+    );
 
   return (
     <Container>
@@ -87,16 +94,21 @@ const GameSettings = () => {
 
         <RoleContainer>
           <RoleName>Min. players</RoleName>
-          <StaticValue count={min} />
+          <StaticValue count={min < 4 ? 4 : min} />
         </RoleContainer>
       </RoleSettingsContainer>
 
       <Space size="1.5em" />
 
-      <Button onClick={handleSendSettings} primary>
+      <Button
+        onClick={handleSendSettings}
+        disabled={!areSettingsDifferent}
+        primary
+      >
         save
       </Button>
-      <Button onClick={handleQuitSettings}>cancel</Button>
+      <Space size="0.5em" />
+      <Button onClick={handleQuitSettings}>back</Button>
     </Container>
   );
 };
