@@ -14,6 +14,8 @@ const MSG = {
     SETTINGS: {
       OPEN: 'ROOM_SETTINGS_OPEN',
       CLOSE: 'ROOM_SETTINGS_CLOSE',
+      SEND: 'ROOM_SETTINGS_SEND',
+      RECEIVE: 'ROOM_SETTINGS_RECEIVE',
     },
   },
   GAME: {
@@ -28,10 +30,6 @@ const MSG = {
   SOUND: {
     WAKE: 'SOUND_WAKE',
     SLEEP: 'SOUND_SLEEP',
-  },
-  SETTINGS: {
-    SEND: 'SETTINGS_SEND',
-    RECEIVE: 'SETTINGS_RECEIVE',
   },
 };
 

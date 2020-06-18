@@ -8,6 +8,7 @@ export const ROUTES = {
     JOIN: 'ROOM_JOIN',
     CREATE: 'ROOM_CREATE',
     LOBBY: 'ROOM_LOBBY',
+    SETTINGS: 'ROOM_SETTINGS',
   },
   GAME: {
     START: 'GAME_START',
@@ -41,6 +42,15 @@ export const routeReducer = (state = INITIAL_STATE, action) => {
 
     case ROOM.LEAVE:
       return ROUTES.MAIN;
+
+    case ROOM.SETTINGS.OPEN:
+      return ROUTES.ROOM.SETTINGS;
+
+    case ROOM.SETTINGS.CLOSE:
+      return ROUTES.ROOM.LOBBY;
+
+    case ROOM.SETTINGS.RECEIVE:
+      return ROUTES.ROOM.LOBBY;
 
     case GAME.START:
       return ROUTES.GAME.START;

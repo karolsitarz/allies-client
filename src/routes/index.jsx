@@ -6,6 +6,7 @@ import Login from './Login';
 import Main from './Main';
 import Room from './Room';
 import Sleep from './Sleep';
+import GameSettings from './GameSettings';
 import GameStart from './GameStart';
 import Vote from './Vote';
 import Summary from './Summary';
@@ -18,6 +19,7 @@ const Routes = () => (
     <Route to={Main} from={ROUTES.MAIN} />
 
     <Route to={Room} from={ROUTES.ROOM.LOBBY} />
+    <Route to={GameSettings} from={ROUTES.ROOM.SETTINGS} />
 
     <Route to={GameStart} from={ROUTES.GAME.START} />
     <Route to={Sleep} from={ROUTES.GAME.SLEEP} />

@@ -10,7 +10,7 @@ const StyledButton = styled.label`
       ? compact
         ? '0.75em 0.7em 0.75em 1em'
         : '0.75em 2.7em 0.75em 3em'
-      : '1em 1.5em'};
+      : '1em'};
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.65em;
