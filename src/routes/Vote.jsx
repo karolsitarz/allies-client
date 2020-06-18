@@ -29,6 +29,7 @@ const Room = () => {
     players = [],
     voteMessage,
     tally,
+    isVoteValid,
     canSkipVote,
     skipVotes,
   } = useSelector((state) => state.game);
@@ -45,6 +46,7 @@ const Room = () => {
         {canSkipVote && (
           <Skip
             isMostVoted={tally.includes(SKIP)}
+            isVoteValid={isVoteValid}
             onClick={() => handleOnVote(SKIP)}
           >
             <LastVotes>
@@ -60,6 +62,7 @@ const Room = () => {
             key={id}
             isCurrent={userID === id}
             isMostVoted={tally.includes(id)}
+            isVoteValid={isVoteValid}
             isDead={isDead}
             emoji={emoji}
             name={name}

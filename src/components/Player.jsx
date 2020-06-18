@@ -36,6 +36,9 @@ const StyledPlayer = styled.div`
   box-shadow: ${({ isMostVoted, theme }) =>
     isMostVoted && `inset 0 0 0 3px ${theme.alpha[3]}`};
 
+  box-shadow: ${({ isFinalVoted, theme }) =>
+    isFinalVoted && `inset 0 0 0 3px ${theme.gradient.mid}`};
+
   background-color: ${({ isDead, theme }) => isDead && theme.alpha[3]};
   opacity: ${({ isDead }) => isDead && '0.4'};
   order: ${({ isDead }) => isDead && '10'};
@@ -82,6 +85,7 @@ const Player = ({
   role,
   emoji,
   isMostVoted,
+  isVoteValid,
   isDead,
   isCurrent,
   isHost,
@@ -90,6 +94,7 @@ const Player = ({
 }) => (
   <StyledPlayer
     isMostVoted={isMostVoted}
+    isFinalVoted={isMostVoted && isVoteValid}
     isDead={isDead}
     isCurrent={isCurrent}
     onClick={onClick}
@@ -111,6 +116,7 @@ Player.propTypes = {
   role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   emoji: PropTypes.string,
   isMostVoted: PropTypes.bool,
+  isVoteValid: PropTypes.bool,
   isDead: PropTypes.bool,
   isCurrent: PropTypes.bool,
   isHost: PropTypes.bool,
@@ -118,8 +124,13 @@ Player.propTypes = {
   onClick: PropTypes.func,
 };
 
-export const Skip = ({ isMostVoted, onClick, children }) => (
-  <StyledPlayer isMostVoted={isMostVoted} onClick={onClick} skip>
+export const Skip = ({ isMostVoted, isVoteValid, onClick, children }) => (
+  <StyledPlayer
+    isMostVoted={isMostVoted}
+    isFinalVoted={isMostVoted && isVoteValid}
+    onClick={onClick}
+    skip
+  >
     <Emoji>{SKIP_EMOJI}</Emoji>
     <Texts>
       <Name>skip</Name>
@@ -131,6 +142,7 @@ export const Skip = ({ isMostVoted, onClick, children }) => (
 
 Skip.propTypes = {
   isMostVoted: PropTypes.bool,
+  isVoteValid: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node,
 };
