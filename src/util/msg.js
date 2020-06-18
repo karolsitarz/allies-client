@@ -11,6 +11,10 @@ const MSG = {
     LEAVE: 'ROOM_LEAVE',
     UPDATE: 'ROOM_UPDATE',
     READY: 'ROOM_READY',
+    SETTINGS: {
+      OPEN: 'ROOM_SETTINGS_OPEN',
+      CLOSE: 'ROOM_SETTINGS_CLOSE',
+    },
   },
   GAME: {
     START: 'GAME_START',
@@ -21,8 +25,14 @@ const MSG = {
     SUMMARY: 'GAME_SUMMARY',
     REVEAL: 'GAME_REVEAL',
   },
-  SOUND_WAKE: 'SOUND_WAKE',
-  SOUND_SLEEP: 'SOUND_SLEEP',
+  SOUND: {
+    WAKE: 'SOUND_WAKE',
+    SLEEP: 'SOUND_SLEEP',
+  },
+  SETTINGS: {
+    SEND: 'SETTINGS_SEND',
+    RECEIVE: 'SETTINGS_RECEIVE',
+  },
 };
 
 export default MSG;

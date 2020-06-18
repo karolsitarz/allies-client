@@ -52,10 +52,10 @@ export default (socket, dispatch) => {
     const { message, data } = parsed;
     debugLog(`\t← ${message}`, COLOR_RED, data);
 
-    if (message === msg.SOUND_WAKE) {
+    if (message === msg.SOUND.WAKE) {
       return playWake(data);
     }
-    if (message === msg.SOUND_SLEEP) {
+    if (message === msg.SOUND.SLEEP) {
       return playSleep(data);
     }
 
