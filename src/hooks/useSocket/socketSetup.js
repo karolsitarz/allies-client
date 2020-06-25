@@ -1,6 +1,7 @@
 import { debugLog } from 'util/debug';
 import msg from 'util/msg';
 import { playWake, playSleep } from 'util/audio';
+import { receivePong } from './pingLoop';
 
 const COLOR_GREEN = '#2C7C26';
 const COLOR_RED = '#C11B1B';
@@ -52,6 +53,9 @@ export default (socket, dispatch) => {
     const { message, data } = parsed;
     debugLog(`\t← ${message}`, COLOR_RED, data);
 
+    if (message === msg.CONNECTION.PONG) {
+      return receivePong(socket, data);
+    }
     if (message === msg.SOUND.WAKE) {
       return playWake(data);
     }
