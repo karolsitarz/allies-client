@@ -6,8 +6,7 @@ import { isDebug, debugLog } from 'util/debug';
 import MSG from 'util/msg';
 import pingLoop from './pingLoop';
 
-const IP = process.env.IP || '127.0.0.1';
-const PORT = process.env.PORT || 443;
+const IP = `wss://playallies.herokuapp.com/`;
 
 const useSocket = () => {
   const dispatch = useDispatch();
@@ -17,7 +16,7 @@ const useSocket = () => {
     new Promise((res, rej) => {
       if (sc) return rej('Socket already exists.');
 
-      const socket = new WebSocket(`ws://${IP}:${PORT}`);
+      const socket = new WebSocket(IP);
       socketSetup(socket, dispatch);
       pingLoop(socket);
       dispatch(setSocket(socket));
