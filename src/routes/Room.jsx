@@ -41,7 +41,9 @@ const Room = () => {
   const canStartGame =
     players.length >= 4 && isEveryoneReady && players.length >= min;
 
-  useEffect(() => isDebug && socket.comm(MSG.ROOM.READY), [socket]);
+  useEffect(() => {
+    isDebug && socket.comm(MSG.ROOM.READY);
+  }, [socket]);
 
   const onIdClick = () => {
     const el = document.createElement('textarea');
