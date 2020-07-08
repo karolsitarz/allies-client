@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import MSG from 'util/msg';
 import useSocket from 'hooks/useSocket';
@@ -10,6 +11,7 @@ import Emoji from 'components/Emoji';
 import EmojiInput from 'components/EmojiInput';
 import ThemeToggle from 'components/ThemeToggle';
 import { StyledForm } from 'components/Container';
+import Loading from 'components/Loading';
 
 const DEFAULT_EMOJI = '😀';
 const DEFAULT_NAME = '';
@@ -18,6 +20,7 @@ const Login = () => {
   const [input, setInput] = useState(DEFAULT_NAME);
   const [emoji, setEmoji] = useState(DEFAULT_EMOJI);
   const [, openSocket] = useSocket();
+  const { isLoading } = useSelector((state) => state.socket);
 
   useEffect(() => {
     const name = localStorage.getItem('name') || DEFAULT_NAME;
@@ -40,6 +43,13 @@ const Login = () => {
     localStorage.setItem('name', input);
     localStorage.setItem('emoji', emoji);
   };
+
+  if (isLoading)
+    return (
+      <Container>
+        <Loading />
+      </Container>
+    );
 
   return (
     <Container>
