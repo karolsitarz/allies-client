@@ -57,9 +57,10 @@ const GameSettings = () => {
 
   const areSettingsDifferent =
     savedSettings.auto !== auto ||
-    !!['killer', 'doctor', 'cop', 'nitwit', 'cabby', 'sniper'].find(
-      (role) => settings[role] !== savedSettings[role]
-    );
+    (!auto &&
+      !!['killer', 'doctor', 'cop', 'nitwit', 'cabby', 'sniper'].find(
+        (role) => settings[role] !== savedSettings[role]
+      ));
 
   return (
     <Container>
