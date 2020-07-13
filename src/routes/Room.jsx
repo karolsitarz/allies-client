@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
-import MSG from 'util/msg';
 import useSocket from 'hooks/useSocket';
 import Container from 'components/Container';
 import Button from 'components/Button';
@@ -10,9 +9,12 @@ import Space from 'components/Space';
 import { PlayerContainer } from 'components/Player';
 import Player from 'components/Player';
 import { isDebug } from 'util/debug';
-import play, { WAKE } from 'util/audio';
-import { setRoute, ROUTES } from 'stores/route';
 import Emoji from 'components/Emoji';
+import Loading from 'components/Loading';
+import play, { WAKE, loadSounds } from 'util/audio';
+import MSG from 'util/msg';
+import { setRoute, ROUTES } from 'stores/route';
+import { setLoading } from 'stores/room';
 
 const BarContainer = styled.div`
   display: flex;
@@ -25,10 +27,10 @@ const BarContainer = styled.div`
 const Room = () => {
   const [socket] = useSocket();
   const dispatch = useDispatch();
-  const { id, players = [] } = useSelector((state) => state.room);
+  const { id, players = [], isLoading } = useSelector((state) => state.room);
   const userID = useSelector((state) => state.socket.id);
-
   const settings = useSelector((state) => state.settings);
+
   const min = Object.values(settings).reduce(
     (acc, role) => (role === true ? acc : role + acc),
     0
@@ -44,6 +46,18 @@ const Room = () => {
   useEffect(() => {
     isDebug && socket.comm(MSG.ROOM.READY);
   }, [socket]);
+
+  useMemo(() => {
+    const loadSoundsPromise = async () => {
+      const playerOrderNumber = players.findIndex(({ id }) => id === userID);
+      if (playerOrderNumber === -1 || playerOrderNumber > 3) return;
+
+      dispatch(setLoading(true));
+      await loadSounds();
+      dispatch(setLoading(false));
+    };
+    loadSoundsPromise();
+  }, [players, userID, dispatch]);
 
   const onIdClick = () => {
     const el = document.createElement('textarea');
@@ -74,9 +88,13 @@ const Room = () => {
           return (
             <Player key={id} isCurrent={isCurrent} {...player}>
               {isCurrent ? (
-                <Button compact onClick={handleReady}>
-                  {isReady ? 'not ready' : 'ready'}
-                </Button>
+                isLoading ? (
+                  <Loading size={1.5} />
+                ) : (
+                  <Button compact onClick={handleReady}>
+                    {isReady ? 'not ready' : 'ready'}
+                  </Button>
+                )
               ) : (
                 isReady && '✅'
               )}
@@ -91,9 +109,13 @@ const Room = () => {
             <Button onClick={handleAudio}>
               <Emoji emoji="🔈" label="speaker" />
             </Button>
-            <Button primary disabled={!canStartGame} onClick={handleStart}>
-              Start
-            </Button>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <Button primary disabled={!canStartGame} onClick={handleStart}>
+                Start
+              </Button>
+            )}
             <Button onClick={handleSettings}>
               <Emoji emoji="⚙️" label="gear" />
             </Button>

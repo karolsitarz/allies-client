@@ -11,9 +11,10 @@ export const COP = 'cop';
 export const DOCTOR = 'doctor';
 export const SNIPER = 'sniper';
 
-export const getHowler = (name) =>
+const getHowler = (name) =>
   new Howl({
     src: [WEBM[name], MP3[name]],
+    preload: false,
   });
 
 const sounds = {
@@ -28,6 +29,25 @@ const sounds = {
 };
 
 const play = (sound) => sounds[sound].play();
+
+export const loadSounds = () =>
+  Promise.all(
+    Object.values(sounds).reduce((acc, sound) => {
+      const promise = new Promise((res, rej) => {
+        if (!sound) return;
+        if (sound.state() === 'loaded') {
+          return res();
+        }
+        if (sound.state() === 'loading') {
+          return;
+        }
+        sound.on('load', res);
+        sound.on('loaderror', rej);
+        sound.load();
+      });
+      return [...acc, promise];
+    }, [])
+  );
 
 export const playWake = (sound) => {
   sounds[sound].play();
