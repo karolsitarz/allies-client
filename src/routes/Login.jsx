@@ -5,12 +5,11 @@ import MSG from 'util/msg';
 import useSocket from 'hooks/useSocket';
 import Input from 'components/Input';
 import Button from 'components/Button';
-import Container from 'components/Container';
+import Container, { StyledForm } from 'components/Container';
 import Space from 'components/Space';
 import Emoji from 'components/Emoji';
 import EmojiInput from 'components/EmojiInput';
 import ThemeToggle from 'components/ThemeToggle';
-import { StyledForm } from 'components/Container';
 import Loading from 'components/Loading';
 
 const DEFAULT_EMOJI = '😀';
@@ -46,7 +45,7 @@ const Login = () => {
 
   if (isLoading)
     return (
-      <Container>
+      <Container key="loading">
         <Loading />
       </Container>
     );
